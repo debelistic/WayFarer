@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/debelistic/WayFarer/issues"
   },
-  "homepage": "https://github.com/debelistic/WayFarer#readme"
+  "homepage": "https://github.com/debelistic/WayFarer#readme",
+  "devDependencies": {
+    "eslint": "^6.0.1"
+  }
 }
