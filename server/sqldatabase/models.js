@@ -22,3 +22,13 @@ const pool = new Pool({
 pool.on('connect', () => {
   console.log('connected to db');
 });
+
+
+/**
+ * Models Here
+ */
+
+pool.on('remove', () => {
+  console.log('client removed');
+  process.exit(0);
+});
