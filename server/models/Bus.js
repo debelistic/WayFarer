@@ -19,7 +19,7 @@ const BusModel = {
           number_plate VARCHAR(500) UNIQUE NOT NULL,
           maunfacturer VARCHAR(500) NOT NULL,
           model VARCHAR(500) NOT NULL,
-          status VARCHAR(500) NOT NULL DEFAULT 'available',
+          status bus_status NOT NULL DEFAULT 'available',
           year VARCHAR(500) NOT NULL,
           capacity VARCHAR(500) NOT NULL,
           createdOn TIMESTAMP,

@@ -22,7 +22,7 @@ const TripModel = {
           destination VARCHAR(500) NOT NULL,
           trip_date VARCHAR(500) NOT NULL,
           fare VARCHAR(500) NOT NULL,
-          status VARCHAR(500) NOT NULL DEFAULT 'active',
+          status trip_status NOT NULL DEFAULT 'active',
           createdOn TIMESTAMP
         )`;
     return tripsTableQuery;
