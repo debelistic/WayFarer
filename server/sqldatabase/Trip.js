@@ -1,4 +1,18 @@
 const TripModel = {
+  async tripStatustype() {
+    const tripStatusTypeQuery = `CREATE TYPE trip_status AS ENUM
+    (
+      'active',
+      'cancelled'
+    )`;
+    return tripStatusTypeQuery;
+  },
+
+  async droptripStatustype() {
+    const dropTripStatusTypeQuery = 'DROP TYPE IF EXISTS trip_status';
+    return dropTripStatusTypeQuery;
+  },
+
   async createTripsTable() {
     const tripsTableQuery = `CREATE TABLE IF NOT EXISTS
         trips(
@@ -8,7 +22,7 @@ const TripModel = {
           destination VARCHAR(500) NOT NULL,
           trip_date VARCHAR(500) NOT NULL,
           fare VARCHAR(500) NOT NULL,
-          status VARCHAR(500) NOT NULL,
+          status VARCHAR(500) NOT NULL DEFAULT 'active',
           createdOn TIMESTAMP
         )`;
     return tripsTableQuery;
