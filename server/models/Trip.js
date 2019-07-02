@@ -21,7 +21,7 @@ const TripModel = {
           origin VARCHAR(500) NOT NULL,
           destination VARCHAR(500) NOT NULL,
           trip_date VARCHAR(500) NOT NULL,
-          fare VARCHAR(500) NOT NULL,
+          fare FLOAT NOT NULL,
           status trip_status NOT NULL DEFAULT 'active',
           createdOn TIMESTAMP
         )`;
