@@ -1,3 +1,5 @@
+require('@babel/polyfill');
+
 const BookingsModel = {
   async createBookingsTable() {
     const bookingsTableQuery = `CREATE TABLE IF NOT EXISTS

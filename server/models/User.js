@@ -1,3 +1,5 @@
+require('@babel/polyfill');
+
 const UserModel = {
   async createUsersTable() {
     const usersTableQuery = `CREATE TABLE IF NOT EXISTS

@@ -23,6 +23,7 @@ const pool = new Pool({
   connectionString: dbURI,
 });
 
+
 pool.on('connect', () => {
   console.log('connected to db');
 });
@@ -32,19 +33,23 @@ pool.on('connect', () => {
  * Create Models Here
  */
 const createUsersTable = async () => {
-  await pool.query(User.createUsersTable);
+  const createQuery = await User.createUsersTable();
+  await pool.query(createQuery);
 };
 
 const createBookingsTable = async () => {
-  await pool.query(Booking.createBookingsTable);
+  const createQuery = await Booking.createBookingsTable();
+  await pool.query(createQuery);
 };
 
 const createTripsTable = async () => {
-  await pool.query(Trip.createTripsTable);
+  const createQuery = await Trip.createTripsTable();
+  await pool.query(createQuery);
 };
 
 const createBusesTable = async () => {
-  await pool.query(Bus.createBusesTable);
+  const createQuery = await Bus.createBusesTable();
+  await pool.query(createQuery);
 };
 
 // create Models End
@@ -53,19 +58,23 @@ const createBusesTable = async () => {
  * Drop Models Here
  */
 const dropUsersTable = async () => {
-  await pool.query(User.dropUsersTable);
+  const dropQuery = await User.dropUsersTable();
+  await pool.query(dropQuery);
 };
 
 const dropBookingsTable = async () => {
-  await pool.query(Booking.dropBookingsTable);
+  const dropQuery = await Booking.dropBookingsTable();
+  await pool.query(dropQuery);
 };
 
 const dropTripsTable = async () => {
-  await pool.query(Trip.dropTripsTable);
+  const dropQuery = await Trip.dropTripsTable();
+  await pool.query(dropQuery);
 };
 
 const dropBusesTable = async () => {
-  await pool.query(Bus.dropBusesTable);
+  const dropQuery = await Bus.dropBusesTable();
+  await pool.query(dropQuery);
 };
 
 // Drop Models End
@@ -75,16 +84,18 @@ const dropBusesTable = async () => {
  * Create Enum Types
  */
 const createTripStatusEnum = async () => {
-  await pool.query(Trip.tripStatustype);
+  const createEnumQuery = await Trip.tripStatustype();
+  await pool.query(createEnumQuery);
 };
 
 const createBusStatusEnum = async () => {
-  await pool.query(Bus.busStatustype);
+  const createEnumQuery = await Bus.busStatustype();
+  await pool.query(createEnumQuery);
 };
 
 const createEnumTypes = async () => {
-  createTripStatusEnum();
-  createBusStatusEnum();
+  await createTripStatusEnum();
+  await createBusStatusEnum();
 };
 // Create Enum Tpes End
 
@@ -92,37 +103,43 @@ const createEnumTypes = async () => {
  * Drop Enum Types
  */
 const dropTripStatusEnum = async () => {
-  await pool.query(Trip.dropTripsTable);
+  const dropEnumQuery = await Trip.droptripStatustype();
+  await pool.query(dropEnumQuery);
 };
 
 const dropBusStatusEnum = async () => {
-  await pool.query(Bus.dropbusStatustype);
+  const dropEnumQuery = await Bus.dropbusStatustype();
+  await pool.query(dropEnumQuery);
 };
 
 const dropEnumTypes = async () => {
-  dropTripStatusEnum();
-  dropBusStatusEnum();
+  await dropTripStatusEnum();
+  await dropBusStatusEnum();
 };
 // End Drop Enum Types
 
 // Create migrations
 const migrate = async () => {
-  createTripStatusEnum();
-  createBusStatusEnum();
-  createUsersTable();
-  createBookingsTable();
-  createTripsTable();
-  createBusesTable();
+  pool.connect();
+  await createTripStatusEnum();
+  await createBusStatusEnum();
+  await createUsersTable();
+  await createBookingsTable();
+  await createTripsTable();
+  await createBusesTable();
+  pool.end();
 };
 
 // Rollback migrations
 const rollback = async () => {
-  dropUsersTable();
-  dropBookingsTable();
-  dropTripsTable();
-  dropBusesTable();
-  dropTripStatusEnum();
-  dropBusStatusEnum();
+  pool.connect();
+  await dropUsersTable();
+  await dropBookingsTable();
+  await dropTripsTable();
+  await dropBusesTable();
+  await dropTripStatusEnum();
+  await dropBusStatusEnum();
+  pool.end();
 };
 
 pool.on('remove', () => {

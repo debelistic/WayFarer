@@ -1,3 +1,5 @@
+require('@babel/polyfill');
+
 const TripModel = {
   async tripStatustype() {
     const tripStatusTypeQuery = `CREATE TYPE trip_status AS ENUM

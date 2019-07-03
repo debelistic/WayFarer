@@ -1,3 +1,5 @@
+require('@babel/polyfill');
+
 const BusModel = {
   async busStatustype() {
     const busStatusTypeQuery = `CREATE TYPE bus_status AS ENUM
