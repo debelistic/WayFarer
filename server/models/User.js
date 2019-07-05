@@ -4,8 +4,8 @@ const UserModel = {
         users(
           id SERIAL PRIMARY KEY,
           email VARCHAR(500) UNIQUE NOT NULL,
-          firstName VARCHAR(500) NOT NULL,
-          lastName VARCHAR(500) NOT NULL,
+          first_name VARCHAR(500) NOT NULL,
+          last_name VARCHAR(500) NOT NULL,
           password VARCHAR(500) NOT NULL,
           is_admin BOOLEAN,
           createdOn TIMESTAMP,
