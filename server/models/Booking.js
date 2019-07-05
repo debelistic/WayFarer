@@ -1,19 +1,19 @@
 require('@babel/polyfill');
 
 const BookingsModel = {
-  async createBookingsTable() {
+  createBookingsTable() {
     const bookingsTableQuery = `CREATE TABLE IF NOT EXISTS
         bookings(
-          id SERIAL PRIMARY KEY,
+          id SERIAL,
           trip_id INT,
           user_id INT,
           createdOn TIMESTAMP,
-          PRIMARY KEY (trip_id, user_id);
+          PRIMARY KEY (trip_id, user_id)
         )`;
     return bookingsTableQuery;
   },
 
-  async dropBookingsTable() {
+  dropBookingsTable() {
     const dropBookingsQuery = 'DROP TABLE IF EXISTS bookings';
     return dropBookingsQuery;
   },

@@ -1,7 +1,5 @@
-require('@babel/polyfill');
-
 const BusModel = {
-  async busStatustype() {
+  busStatustype() {
     const busStatusTypeQuery = `CREATE TYPE bus_status AS ENUM
     (
       'available',
@@ -10,11 +8,11 @@ const BusModel = {
     return busStatusTypeQuery;
   },
 
-  async dropbusStatustype() {
+  dropbusStatustype() {
     const dropbusStatusTypeQuery = 'DROP TYPE IF EXISTS bus_status';
     return dropbusStatusTypeQuery;
   },
-  async createBusesTable() {
+  createBusesTable() {
     const busesTableQuery = `CREATE TABLE IF NOT EXISTS
         buses(
           id SERIAL PRIMARY KEY,
@@ -30,7 +28,7 @@ const BusModel = {
     return busesTableQuery;
   },
 
-  async dropBusesTable() {
+  dropBusesTable() {
     const dropBusesQuery = 'DROP TABLE IF EXISTS buses';
     return dropBusesQuery;
   },

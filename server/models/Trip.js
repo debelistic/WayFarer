@@ -1,7 +1,5 @@
-require('@babel/polyfill');
-
 const TripModel = {
-  async tripStatustype() {
+  tripStatustype() {
     const tripStatusTypeQuery = `CREATE TYPE trip_status AS ENUM
     (
       'active',
@@ -10,12 +8,12 @@ const TripModel = {
     return tripStatusTypeQuery;
   },
 
-  async droptripStatustype() {
+  droptripStatustype() {
     const dropTripStatusTypeQuery = 'DROP TYPE IF EXISTS trip_status';
     return dropTripStatusTypeQuery;
   },
 
-  async createTripsTable() {
+  createTripsTable() {
     const tripsTableQuery = `CREATE TABLE IF NOT EXISTS
         trips(
           id SERIAL PRIMARY KEY,
@@ -30,7 +28,7 @@ const TripModel = {
     return tripsTableQuery;
   },
 
-  async dropTripsTable() {
+  dropTripsTable() {
     const dropTripsQuery = 'DROP TABLE IF EXISTS trips';
     return dropTripsQuery;
   },

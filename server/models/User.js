@@ -1,7 +1,5 @@
-require('@babel/polyfill');
-
 const UserModel = {
-  async createUsersTable() {
+  createUsersTable() {
     const usersTableQuery = `CREATE TABLE IF NOT EXISTS
         users(
           id SERIAL PRIMARY KEY,
@@ -16,7 +14,7 @@ const UserModel = {
     return usersTableQuery;
   },
 
-  async dropUsersTable() {
+  dropUsersTable() {
     const dropUsersQuery = 'DROP TABLE IF EXISTS users';
     return dropUsersQuery;
   },
