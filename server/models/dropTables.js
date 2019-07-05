@@ -6,8 +6,6 @@ import Trip from './Trip';
 import Bus from './Bus';
 import Booking from './Booking';
 
-require('@babel/polyfill');
-
 config();
 
 let dbURI;

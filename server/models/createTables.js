@@ -6,8 +6,6 @@ import Trip from './Trip';
 import Bus from './Bus';
 import Booking from './Booking';
 
-require('@babel/polyfill');
-
 config();
 
 let dbURI;
@@ -84,7 +82,7 @@ const createEnumTypes = () => {
 };
 // Create Enum Tpes End
 
-const allQueries = () => {  
+const allCreateQueries = () => {  
   return (
     `
     ${createUsersTable()};
@@ -98,7 +96,7 @@ const allQueries = () => {
 
 // Create migrations
 const migrate = async () => {
-  await pool.query(allQueries());
+  await pool.query(allCreateQueries());
 };
 
 pool.on('remove', () => {

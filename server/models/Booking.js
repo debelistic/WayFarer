@@ -1,5 +1,3 @@
-require('@babel/polyfill');
-
 const BookingsModel = {
   createBookingsTable() {
     const bookingsTableQuery = `CREATE TABLE IF NOT EXISTS
