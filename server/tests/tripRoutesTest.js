@@ -51,6 +51,45 @@ describe('Admin Create Trips', () => {
 
 
 // get trips by origin
+describe('Get Trips by Origin', () => {
+  it('Get all Trips by specified Origin', (done) => {
+    const tripOrigin = 'Sans';
+    chai.request(app)
+      .get(`/trips/:${tripOrigin}`)
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.keys('status', 'data');
+        expect(res.body.data).to.be.an('array');
+      });
+  });
+});
 // get trips by destiabtion
-// patch trips
+describe('Get Trips by Destination', () => {
+  it('Get all Trips by specified Destination', (done) => {
+    const tripDestination = 'Lema';
+    chai.request(app)
+      .get(`/trips/:${tripDestination}`)
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.keys('status', 'data');
+        expect(res.body.data).to.be.an('array');
+      });
+  });
+});
 // admin cancel a trip {patch}
+describe('Admin Cancel Trip', () => {
+  it('PATCH a Trip', (done) => {
+    const tripId = 13;
+    chai.request(app)
+      .patch(`/trips/:${tripId}`)
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).to.equal(204);
+        expect(res.body).to.have.keys('status', 'data');
+        expect(res.data).to.be.an('array');
+        expect(res.data).to.have.key('message');
+      });
+  });
+});

@@ -70,7 +70,7 @@ describe('User delete trip', () => {
 });
 
 // user change seats after booking {patch}
-describe('Change seat number on a trip', () => {
+describe('Change seat number on a booking', () => {
   it('PATCH a user booking', (done) => {
     const bookingId = 13;
     chai.request(app)
