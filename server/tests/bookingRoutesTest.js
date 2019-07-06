@@ -9,3 +9,4 @@ chai.use(chaiHttp);
 // admin view all bookinkgs {get}
 // user delete their own booking {delete}
 // admin cancel a trip {patch}
+// user change seats after booking {patch}
