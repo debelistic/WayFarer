@@ -5,7 +5,7 @@ import app from '../app';
 chai.use(chaiHttp);
 
 // user book trip {post}
-describe('User can book a seat on a trip', () => {
+describe('User book a seat on a trip', () => {
   it('POST bookng', (done) => {
     const newBooking = {
       token: 'user_token',
@@ -28,7 +28,59 @@ describe('User can book a seat on a trip', () => {
   });
 });
 // user see their own booking {get}
+describe('User view their booking', () => {
+  it('GET booking of a user', (done) => {
+    chai.request(app)
+      .get('/bookings')
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.keys('status', 'data');
+        expect(res.data).to.be.an('array');
+      });
+  });
+});
 // admin view all bookinkgs {get}
+describe('Admin view all booking', () => {
+  it('GET all booking', (done) => {
+    chai.request(app)
+      .get('/bookings')
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).to.equal(200);
+        expect(res.body).to.have.keys('status', 'data');
+        expect(res.data).to.be.an('array');
+      });
+  });
+});
 // user delete their own booking {delete}
-// admin cancel a trip {patch}
+describe('User delete trip', () => {
+  it('DELETE a user booking', (done) => {
+    const bookingId = 12;
+    chai.request(app)
+      .delete(`/bookings/:${bookingId}`)
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).to.equal(204);
+        expect(res.body).to.have.keys('status', 'data');
+        expect(res.data).to.be.an('array');
+        expect(res.data).to.have.key('message');
+      });
+  });
+});
+
 // user change seats after booking {patch}
+describe('Change seat number on a trip', () => {
+  it('PATCH a user booking', (done) => {
+    const bookingId = 13;
+    chai.request(app)
+      .patch(`/bookings/:${bookingId}`)
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).to.equal(204);
+        expect(res.body).to.have.keys('status', 'data');
+        expect(res.data).to.be.an('array');
+        expect(res.data).to.have.key('message');
+      });
+  });
+});

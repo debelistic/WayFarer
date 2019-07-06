@@ -53,3 +53,4 @@ describe('Admin Create Trips', () => {
 // get trips by origin
 // get trips by destiabtion
 // patch trips
+// admin cancel a trip {patch}
