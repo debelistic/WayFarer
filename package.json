@@ -13,7 +13,7 @@
     "production": "npm run migrate && node server/bin/production",
     "migrate": "npm run create-tables",
     "create-tables": "babel-node server/models/createTables",
-    "insert": "npm run insertUsers && npm run insertBuses && npm run insertBookings && npm run insertTrips --exit",
+    "insert": "npm run insertUsers && npm run insertBuses && npm run insertBookings && npm run insertTrips",
     "insertUsers": "psql -U postgres -d wayfarer -a -f server/models/users.sql",
     "insertBuses": "psql -U postgres -d wayfarer -a -f server/models/buses.sql",
     "insertBookings": "psql -U postgres -d wayfarer -a -f server/models/bookings.sql",
