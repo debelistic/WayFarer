@@ -1,7 +1,7 @@
 before_script:
   - npm install mocha chai nyc
   - npm install nyc codecov coveralls
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database wayfarer;' -U postgres
 language: node_js
 node_js:
   - "stable"
