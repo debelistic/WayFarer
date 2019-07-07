@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 // user book trip {post}
 describe('User book a seat on a trip', () => {
-  it('POST bookng', (done) => {
+  it('POST booking', (done) => {
     const newBooking = {
       token: 'user_token',
       user_id: 9,
