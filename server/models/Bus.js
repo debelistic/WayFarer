@@ -21,7 +21,7 @@ const BusModel = {
           model VARCHAR(500) NOT NULL,
           status bus_status NOT NULL DEFAULT 'available',
           year VARCHAR(500) NOT NULL,
-          capacity VARCHAR(500) NOT NULL,
+          capacity INT NOT NULL,
           createdOn TIMESTAMP,
           modifiedOn TIMESTAMP
         )`;

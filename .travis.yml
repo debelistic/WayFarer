@@ -1,0 +1,18 @@
+before_script:
+  - npm install mocha chai nyc
+  - npm install nyc codecov coveralls
+  - psql -c 'create database wayfarer;' -U postgres
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+script:
+  - npm test
+services:
+  - postgresql
+after_success:
+  - npm run coverage
+global:
+  - CODECLIMATE_REPO_TOKEN=2eee37b5b6aa153b35ba87b30c12c85253d50e20b4655bedb6ef01fb7797f68b
