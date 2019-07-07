@@ -5,7 +5,7 @@
   "main": "server/app.js",
   "type": "module",
   "scripts": {
-    "test": "set NODE_ENV=test && npm run testSeeder && mocha -r @babel/register -r @babel/polyfill server/tests/*.js --exit && npm run rollback",
+    "test": "set NODE_ENV=test && npm run seeder && mocha -r @babel/register -r @babel/polyfill server/tests/*.js --exit && npm run rollback",
     "devstart": "set NODE_ENV=development && npm run seeder && babel-watch server/app.js",
     "start": "set NODE_ENV=production && npm run migrate && node server/bin/dev",
     "clean": "rm -rf dist",
