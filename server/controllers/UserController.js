@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { config } from 'dotenv';
 import db from '../db';
-import Auth from '../middlewares';
-import Helper from '../utils';
+import Auth from '../middlewares/Auth';
+import Helper from '../utils/Helper';
 
 config();
 
