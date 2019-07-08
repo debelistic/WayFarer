@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 describe('User Signup', () => {
   it('Get signup route', (done) => {
     chai.request(app)
-      .get('/auth/signup')
+      .get('/api/v1/auth/signup')
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
@@ -29,7 +29,7 @@ describe('User Signup', () => {
       password: 'ertyu67@KL',
     };
     chai.request(app)
-      .post('/auth/signup')
+      .post('/api/v1/auth/signup')
       .send(newUser)
       .end((error, res) => {
         if (error) done(error);
@@ -46,7 +46,7 @@ describe('User Signup', () => {
 describe('User Signin', () => {
   it('Signin a user', (done) => {
     chai.request(app)
-      .get('/auth/signin')
+      .get('/api/v1/auth/signin')
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
@@ -61,7 +61,7 @@ describe('Signin a User', () => {
       password: 'ertyu67@KL',
     };
     chai.request(app)
-      .post('/auth/signin')
+      .post('/api/v1/auth/signin')
       .send(user)
       .end((error, res) => {
         if (error) done(error);

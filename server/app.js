@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.get('/', (req, res) => {
-  res.statusCoode(200).send({
+  res.status(200).send({
     status: 'success',
     message: 'Welcome to Way Farer',
   });
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 // eslint-disable-next-line no-unused-vars
 app.use((error, req, res, next) => {
   const { message } = error;
-  res.statusCode(error.status || 500).send({
+  res.status(error.status || 500).send({
     status: 'error',
     message,
   });

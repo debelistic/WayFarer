@@ -10,7 +10,7 @@ chai.use(chaiHttp);
 describe('Get Trips', () => {
   it('Get all Trips', (done) => {
     chai.request(app)
-      .get('/trips')
+      .get('/api/v1/trips')
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
@@ -35,7 +35,7 @@ describe('Admin Create Trips', () => {
       createdOn: Date(),
     };
     chai.request(app)
-      .post('/trips')
+      .post('/api/v1/trips')
       .send(newTrip)
       .end((error, res) => {
         if (error) done(error);
@@ -57,7 +57,7 @@ describe('Get Trips by Origin', () => {
   it('Get all Trips by specified Origin', (done) => {
     const tripOrigin = 'Sans';
     chai.request(app)
-      .get(`/trips/:${tripOrigin}`)
+      .get(`/api/v1/trips/:${tripOrigin}`)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
@@ -71,7 +71,7 @@ describe('Get Trips by Destination', () => {
   it('Get all Trips by specified Destination', (done) => {
     const tripDestination = 'Lema';
     chai.request(app)
-      .get(`/trips/:${tripDestination}`)
+      .get(`/api/v1/trips/:${tripDestination}`)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
@@ -85,7 +85,7 @@ describe('Admin Cancel Trip', () => {
   it('PATCH a Trip', (done) => {
     const tripId = 13;
     chai.request(app)
-      .patch(`/trips/:${tripId}`)
+      .patch(`/api/v1/trips/:${tripId}`)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(204);

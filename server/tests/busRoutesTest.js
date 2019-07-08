@@ -18,7 +18,7 @@ describe('Admin add bus', () => {
       capacity: 70,
     };
     chai.request(app)
-      .post('/buses')
+      .post('/api/v1/buses')
       .send(newBus)
       .end((error, res) => {
         if (error) done(error);
@@ -32,7 +32,7 @@ describe('Admin add bus', () => {
 describe('Admin view all available bues', () => {
   it('GET available buses', (done) => {
     chai.request(app)
-      .get('/buses')
+      .get('/api/v1/buses')
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
