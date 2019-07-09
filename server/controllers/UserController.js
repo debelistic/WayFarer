@@ -17,8 +17,8 @@ const UserController = {
   async signup(req, res) {
     try {
       const hashPassword = Helper.hashPassword(req.body.password);
-      const values = [req.body.email, req.body.first_name,
-        req.body.last_name, hashPassword, new Date(), new Date()];
+      const values = [req.body.email.toLowerCase(), req.body.first_name.toLowerCase(),
+        req.body.last_name.toLowerCase(), hashPassword, new Date(), new Date()];
       const { rows } = await db.query(createUserQuery, values);
       const token = Helper.generateToken(rows[0].email);
 
@@ -31,7 +31,6 @@ const UserController = {
         },
       });
     } catch (error) {
-      console.log(error);
       return res.status(500).send({
         status: 'error',
         message: error,
