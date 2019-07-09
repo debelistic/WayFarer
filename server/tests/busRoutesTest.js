@@ -24,7 +24,8 @@ describe('Admin add bus', () => {
         if (error) done(error);
         expect(res.status).to.equal(201);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.data).to.have.keys('number_plate', 'maunfacturer', 'model', 'year', 'capacity');
+        expect(res.body.data).to.have.keys('number_plate', 'maunfacturer', 'model', 'year', 'capacity');
+        done();
       });
   });
 });
@@ -37,7 +38,8 @@ describe('Admin view all available bues', () => {
         if (error) done(error);
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.data).to.be.an('array');
+        expect(res.body.data).to.be.an('array');
+        done();
       });
   });
 });

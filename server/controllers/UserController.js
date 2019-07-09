@@ -1,3 +1,5 @@
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import jwt from 'jsonwebtoken';
 import { config } from 'dotenv';
 import db from '../db';
@@ -29,6 +31,7 @@ const UserController = {
         },
       });
     } catch (error) {
+      console.log(error);
       return res.status(500).send({
         status: 'error',
         message: error,

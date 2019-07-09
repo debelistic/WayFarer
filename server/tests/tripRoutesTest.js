@@ -16,6 +16,7 @@ describe('Get Trips', () => {
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.be.an('array');
+        done();
       });
   });
 });
@@ -41,12 +42,13 @@ describe('Admin Create Trips', () => {
         if (error) done(error);
         expect(res.status).to.equal(201);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.data).to.have.keys('trip_id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare');
-        expect(res.data.trip_id).to.be.an('integer');
-        expect(res.data.bus_id).to.be.a('integer');
-        expect(res.data.destination).to.be.a('string');
-        expect(res.data.trip_date).to.be.a('string');
-        expect(res.data.fare).to.be.a('float');
+        expect(res.body.data).to.have.keys('trip_id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare');
+        expect(res.body.data.trip_id).to.be.an('integer');
+        expect(res.body.data.bus_id).to.be.a('integer');
+        expect(res.body.data.destination).to.be.a('string');
+        expect(res.body.data.trip_date).to.be.a('string');
+        expect(res.body.data.fare).to.be.a('float');
+        done();
       });
   });
 });
@@ -63,6 +65,7 @@ describe('Get Trips by Origin', () => {
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.be.an('array');
+        done();
       });
   });
 });
@@ -77,6 +80,7 @@ describe('Get Trips by Destination', () => {
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.be.an('array');
+        done();
       });
   });
 });
@@ -90,8 +94,9 @@ describe('Admin Cancel Trip', () => {
         if (error) done(error);
         expect(res.status).to.equal(204);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.data).to.be.an('array');
-        expect(res.data).to.have.key('message');
+        expect(res.body.data).to.be.an('array');
+        expect(res.body.data).to.have.key('message');
+        done();
       });
   });
 });
