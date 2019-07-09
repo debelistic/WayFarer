@@ -23,9 +23,9 @@ describe('User book a seat on a trip', () => {
         expect(res.status).to.equal(201);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.have.keys('booking_id', 'user_id', 'trip_id', 'bus_id', 'trip_date', 'seat_number', 'first_name', 'last_name', 'email');
-        expect(res.body.data.user_id).to.be.an('integer');
-        expect(res.body.data.trip_id).to.be.a('integer');
-        expect(res.body.data.seat_number).to.be.a('integer');
+        expect(res.body.data.user_id).to.be.an('number');
+        expect(res.body.data.trip_id).to.be.a('number');
+        expect(res.body.data.seat_number).to.be.a('number');
         done();
       });
   });

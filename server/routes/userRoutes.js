@@ -14,4 +14,12 @@ Router.post(
   UserController.signup,
 );
 
+Router.post(
+  '/auth/signin',
+  ValidateUserInput.loginField,
+  ValidateUserInput.loginEmail,
+  ValidateUserInput.loginPassword,
+  UserController.signin,
+);
+
 export default Router;
