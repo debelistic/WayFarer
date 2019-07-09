@@ -7,7 +7,7 @@ const UserModel = {
           first_name VARCHAR(500) NOT NULL,
           last_name VARCHAR(500) NOT NULL,
           password VARCHAR(500) NOT NULL,
-          is_admin BOOLEAN,
+          is_admin BOOLEAN DEFAULT false,
           createdOn TIMESTAMP,
           modifiedOn TIMESTAMP
         )`;

@@ -1,6 +1,5 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-// import jwt from 'jsonwebtoken';
 import app from '../app';
 
 const { expect } = chai;
@@ -23,7 +22,7 @@ describe('User Signup', () => {
         expect(res.status).to.equal(201);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.have.keys('user_id', 'is_admin', 'token');
-        expect(res.body.data.user_id).to.be.an('integer');
+        expect(res.body.data.user_id).to.be.a('number');
         expect(res.body.data.is_admin).to.be.a('boolean');
         expect(res.body.data.token).to.be.a('string');
         done(error);
