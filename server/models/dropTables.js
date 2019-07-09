@@ -23,7 +23,7 @@ const pool = new Pool({
 
 
 pool.on('connect', () => {
-  console.log('connected to db');
+  console.log('connected to db', dbURI);
 });
 
 /**
@@ -64,24 +64,20 @@ const dropBusStatusEnum = () => {
   return dropEnumQuery;
 };
 
-const dropEnumTypes = () => {
-  return (
-    `${dropTripStatusEnum()};
+const dropEnumTypes = () => (
+  `${dropTripStatusEnum()};
     ${dropBusStatusEnum()};`
-  );
-};
+);
 // End Drop Enum Types
 
-const allDropQueries = () => {
-  return (
-    `
+const allDropQueries = () => (
+  `
     ${dropUsersTable()};
     ${dropBookingsTable()};
     ${dropTripsTable()};
     ${dropBusesTable()};
     ${dropEnumTypes()}`
-  )
-}
+);
 
 // Rollback migrations
 const rollback = async () => {
@@ -89,9 +85,8 @@ const rollback = async () => {
 };
 
 pool.on('remove', () => {
-  console.log('client removed');
+  console.log('client removed from ', dbURI);
   process.exit(0);
 });
 
 rollback();
-

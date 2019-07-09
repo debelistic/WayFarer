@@ -10,12 +10,13 @@ chai.use(chaiHttp);
 describe('Get Trips', () => {
   it('Get all Trips', (done) => {
     chai.request(app)
-      .get('/trips')
+      .get('/api/v1/trips')
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.be.an('array');
+        done();
       });
   });
 });
@@ -35,18 +36,19 @@ describe('Admin Create Trips', () => {
       createdOn: Date(),
     };
     chai.request(app)
-      .post('/trips')
+      .post('/api/v1/trips')
       .send(newTrip)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(201);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.data).to.have.keys('trip_id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare');
-        expect(res.data.trip_id).to.be.an('integer');
-        expect(res.data.bus_id).to.be.a('integer');
-        expect(res.data.destination).to.be.a('string');
-        expect(res.data.trip_date).to.be.a('string');
-        expect(res.data.fare).to.be.a('float');
+        expect(res.body.data).to.have.keys('trip_id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare');
+        expect(res.body.data.trip_id).to.be.an('number');
+        expect(res.body.data.bus_id).to.be.a('number');
+        expect(res.body.data.destination).to.be.a('string');
+        expect(res.body.data.trip_date).to.be.a('string');
+        expect(res.body.data.fare).to.be.a('float');
+        done();
       });
   });
 });
@@ -57,12 +59,13 @@ describe('Get Trips by Origin', () => {
   it('Get all Trips by specified Origin', (done) => {
     const tripOrigin = 'Sans';
     chai.request(app)
-      .get(`/trips/:${tripOrigin}`)
+      .get(`/api/v1/trips/:${tripOrigin}`)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.be.an('array');
+        done();
       });
   });
 });
@@ -71,12 +74,13 @@ describe('Get Trips by Destination', () => {
   it('Get all Trips by specified Destination', (done) => {
     const tripDestination = 'Lema';
     chai.request(app)
-      .get(`/trips/:${tripDestination}`)
+      .get(`/api/v1/trips/:${tripDestination}`)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.be.an('array');
+        done();
       });
   });
 });
@@ -85,13 +89,14 @@ describe('Admin Cancel Trip', () => {
   it('PATCH a Trip', (done) => {
     const tripId = 13;
     chai.request(app)
-      .patch(`/trips/:${tripId}`)
+      .patch(`/api/v1/trips/:${tripId}`)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(204);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.data).to.be.an('array');
-        expect(res.data).to.have.key('message');
+        expect(res.body.data).to.be.an('array');
+        expect(res.body.data).to.have.key('message');
+        done();
       });
   });
 });

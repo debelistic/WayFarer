@@ -18,13 +18,14 @@ describe('Admin add bus', () => {
       capacity: 70,
     };
     chai.request(app)
-      .post('/buses')
+      .post('/api/v1/buses')
       .send(newBus)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(201);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.data).to.have.keys('number_plate', 'maunfacturer', 'model', 'year', 'capacity');
+        expect(res.body.data).to.have.keys('number_plate', 'maunfacturer', 'model', 'year', 'capacity');
+        done();
       });
   });
 });
@@ -32,12 +33,13 @@ describe('Admin add bus', () => {
 describe('Admin view all available bues', () => {
   it('GET available buses', (done) => {
     chai.request(app)
-      .get('/buses')
+      .get('/api/v1/buses')
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.data).to.be.an('array');
+        expect(res.body.data).to.be.an('array');
+        done();
       });
   });
 });

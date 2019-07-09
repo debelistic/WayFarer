@@ -23,7 +23,7 @@ const pool = new Pool({
 
 
 pool.on('connect', () => {
-  console.log('connected to db');
+  console.log('connected to db', dbURI);
 });
 
 
@@ -74,25 +74,21 @@ const createBusStatusEnum = () => {
   return createEnumQuery;
 };
 
-const createEnumTypes = () => {
-  return (
-    `${createTripStatusEnum()};
+const createEnumTypes = () => (
+  `${createTripStatusEnum()};
     ${createBusStatusEnum()}`
-  );
-};
+);
 // Create Enum Tpes End
 
-const allCreateQueries = () => {  
-  return (
-    `
+const allCreateQueries = () => (
+  `
     ${createUsersTable()};
     ${createEnumTypes()};
     ${createTripsTable()};
     ${createBookingsTable()};
     ${createBusesTable()}
     `
-  );
-};
+);
 
 // Create migrations
 const migrate = async () => {
@@ -100,7 +96,7 @@ const migrate = async () => {
 };
 
 pool.on('remove', () => {
-  console.log('client removed');
+  console.log('client removed from', dbURI);
   process.exit(0);
 });
 

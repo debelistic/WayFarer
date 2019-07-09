@@ -6,7 +6,7 @@ config();
 
 let dbURI;
 
-if (process.env.NODE_ENV.trim() === 'TEST') {
+if (process.env.NODE_ENV.trim() === 'test') {
   dbURI = process.env.TEST_DATABASE_URL;
 } else {
   dbURI = process.env.DATABASE_URL;
@@ -17,7 +17,7 @@ const pool = new Pool({
 });
 
 pool.on('connect', () => {
-  console.log('connected to database');
+  console.log('connected to database', dbURI);
 });
 
 export default {

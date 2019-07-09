@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "set NODE_ENV=test && npm run seeder && mocha -r @babel/register -r @babel/polyfill server/tests/*.js --exit && npm run rollback",
+    "localTest": "set NODE_ENV=test && npm run testSeeder && mocha -r @babel/register -r @babel/polyfill server/tests/*.js --exit && npm run rollback",
     "devstart": "set NODE_ENV=development && npm run seeder && babel-watch server/app.js",
     "start": "set NODE_ENV=production && npm run migrate && node server/bin/dev",
     "clean": "rm -rf dist",
@@ -15,23 +16,17 @@
     "create-tables": "babel-node server/models/createTables",
     "insert": "npm run insertUsers && npm run insertBuses && npm run insertBookings && npm run insertTrips",
     "testInsert": "npm run insertTestUsers && npm run insertTestBuses && npm run insertTestBookings && npm run insertTestTrips",
-
     "insertUsers": "psql -U postgres -d wayfarer -a -f server/models/users.sql",
     "insertTestUsers": "psql -U postgres -d wayfarerTest -a -f server/models/users.sql",
-
     "insertBuses": "psql -U postgres -d wayfarer -a -f server/models/buses.sql",
     "insertTestBuses": "psql -U postgres -d wayfarerTest -a -f server/models/buses.sql",
-
     "insertBookings": "psql -U postgres -d wayfarer -a -f server/models/bookings.sql",
     "insertTestBookings": "psql -U postgres -d wayfarerTest -a -f server/models/bookings.sql",
-
     "insertTrips": "psql -U postgres -d wayfarer -a -f server/models/trips.sql",
     "insertTestTrips": "psql -U postgres -d wayfarerTest -a -f server/models/trips.sql",
-
     "rollback": "babel-node server/models/dropTables",
     "seeder": "npm run build && npm run rollback && npm run create-tables && npm run insert",
     "testSeeder": "npm run build && npm run rollback && npm run create-tables && npm run testInsert",
-
     "generate-lcov": "nyc report --reporter=text-lcov > lcov.info",
     "coveralls-coverage": "coveralls < lcov.info",
     "codeclimate-coverage": "codeclimate-test-reporter < lcov.info",
@@ -57,24 +52,24 @@
   "homepage": "https://github.com/debelistic/WayFarer#readme",
   "devDependencies": {
     "eslint": "^5.15.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-mocha": "^5.3.0"
   },
   "dependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/node": "^7.4.5",
-    "@babel/polyfill": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/node": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
     "@babel/register": "^7.4.4",
     "babel-watch": "^7.0.0",
-    "bcrypt": "^3.0.4",
+    "bcrypt": "^3.0.6",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-http": "^4.2.1",
     "compression": "^1.7.4",
+    "core-js": "^3.1.4",
     "datauri": "^2.0.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
@@ -87,7 +82,8 @@
     "morgan": "^1.9.1",
     "nodemailer": "^6.1.0",
     "pg": "^7.9.0",
-    "swagger-ui-express": "^4.0.2",
+    "regenerator-runtime": "^0.13.2",
+    "swagger-ui-express": "^4.0.7",
     "uuid": "^3.3.2"
   }
 }
