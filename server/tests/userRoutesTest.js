@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 describe('User Signup', () => {
   it('Creates a new user and assign a token', (done) => {
     const newUser = {
-      email: 'smauelwillijaden@wemail.com',
+      email: 'smaueljaden@wemail.com',
       first_name: 'Samuel',
       last_name: 'Jaden',
       password: 'ertyu67@KL',
@@ -44,7 +44,7 @@ describe('Signin a User', () => {
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.have.keys('user_id', 'is_admin', 'token');
-        expect(res.body.data.user_id).to.be.an('integer');
+        expect(res.body.data.user_id).to.be.an('number');
         expect(res.body.data.is_admin).to.be.a('boolean');
         expect(res.body.data.token).to.be.a('string');
         done();

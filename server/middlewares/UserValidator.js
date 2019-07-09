@@ -43,7 +43,7 @@ const ValidateUserInput = {
     }
     return next();
   },
- 
+
   async validateMail(req, res, next) {
     if (!req.body.email || !/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.email)) {
       return res.status(400).send({

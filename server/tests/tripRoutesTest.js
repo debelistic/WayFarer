@@ -43,8 +43,8 @@ describe('Admin Create Trips', () => {
         expect(res.status).to.equal(201);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.have.keys('trip_id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare');
-        expect(res.body.data.trip_id).to.be.an('integer');
-        expect(res.body.data.bus_id).to.be.a('integer');
+        expect(res.body.data.trip_id).to.be.an('number');
+        expect(res.body.data.bus_id).to.be.a('number');
         expect(res.body.data.destination).to.be.a('string');
         expect(res.body.data.trip_date).to.be.a('string');
         expect(res.body.data.fare).to.be.a('float');
