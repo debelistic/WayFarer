@@ -13,12 +13,12 @@ Router.post(
   TripsController.createTrip,
 );
 
-/* Router.get(
+Router.get(
   '/trips',
   Auth.checkToken,
   Auth.verifyToken,
-  TripsController.createTrip,
-); */
+  TripsController.getTrips,
+);
 
 
 export default Router;

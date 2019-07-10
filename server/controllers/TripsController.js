@@ -8,6 +8,7 @@ config();
 const createTripQuery = `INSERT INTO
         trips(bus_id, origin, destination, trip_date, fare, createdOn, modifiedOn)
         VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
+const getTripsQuery = 'SELECT * FROM trips';
 
 const TripsController = {
   async createTrip(req, res) {
@@ -27,6 +28,21 @@ const TripsController = {
           trip_date: rows[0].trip_date,
           fare: rows[0].fare,
         },
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 'error',
+        message: error,
+      });
+    }
+  },
+
+  async getTrips(req, res) {
+    try {
+      const { rows } = await db.query(getTripsQuery);
+      return res.status(200).send({
+        status: 'success',
+        data: rows,
       });
     } catch (error) {
       return res.status(500).send({

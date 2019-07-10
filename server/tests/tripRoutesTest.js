@@ -17,6 +17,7 @@ describe('Get Trips', () => {
   it('Get all Trips', (done) => {
     chai.request(app)
       .get('/api/v1/trips')
+      .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
