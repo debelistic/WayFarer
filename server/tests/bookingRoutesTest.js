@@ -1,22 +1,28 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import jwt from 'jsonwebtoken';
 import app from '../app';
 
 const { expect } = chai;
 
 chai.use(chaiHttp);
 
+const token = jwt.sign({
+  userEmail: 'tipgrave0@123-reg.co.uk',
+},
+process.env.SECRET, { expiresIn: '3d' });
+
 // user book trip {post}
 describe('User book a seat on a trip', () => {
   it('POST booking', (done) => {
     const newBooking = {
-      token: 'user_token',
       user_id: 9,
       is_admin: false,
       trip_id: 18,
     };
     chai.request(app)
       .post('/api/v1/bookings')
+      .set('x-access-token', token)
       .send(newBooking)
       .end((error, res) => {
         if (error) done(error);
@@ -35,6 +41,7 @@ describe('User view their booking', () => {
   it('GET booking of a user', (done) => {
     chai.request(app)
       .get('/api/v1/bookings')
+      .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
@@ -49,6 +56,7 @@ describe('Admin view all booking', () => {
   it('GET all booking', (done) => {
     chai.request(app)
       .get('/api/v1/bookings')
+      .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
@@ -64,6 +72,7 @@ describe('User delete trip', () => {
     const bookingId = 12;
     chai.request(app)
       .delete(`/api/v1/bookings/:${bookingId}`)
+      .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(204);
@@ -81,6 +90,7 @@ describe('Change seat number on a booking', () => {
     const bookingId = 13;
     chai.request(app)
       .patch(`/api/v1/bookings/:${bookingId}`)
+      .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(204);

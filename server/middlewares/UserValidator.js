@@ -127,6 +127,18 @@ const ValidateUserInput = {
       message: 'only admins can create trips',
     });
   },
+
+  async userCheck(req, res, next) {
+    const { email } = req.user;
+    const { rows } = await db.query(getUser, [email]);
+    const user = rows[0];
+    req.user = user;
+    if (user) return next();
+    return res.status(403).send({
+      status: 'error',
+      message: 'login into your account',
+    });
+  },
 };
 
 export default ValidateUserInput;
