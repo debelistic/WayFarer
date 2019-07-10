@@ -1,10 +1,16 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import jwt from 'jsonwebtoken';
 import app from '../app';
 
 const { expect } = chai;
 
 chai.use(chaiHttp);
+
+const token = jwt.sign({
+  userEmail: 'tipgrave0@123-reg.co.uk',
+},
+process.env.SECRET, { expiresIn: '3d' });
 
 // get all trips
 describe('Get Trips', () => {
@@ -28,15 +34,15 @@ describe('Admin Create Trips', () => {
       token: 'smaueljaden@wemail.com',
       user_id: 'Samuel',
       is_admin: true,
-      bus_id: 4,
+      bus_id: 41,
       origin: 'osun',
       destination: 'edo',
       trip_date: Date(),
-      fare: 28,
-      createdOn: Date(),
+      fare: 28.00,
     };
     chai.request(app)
       .post('/api/v1/trips')
+      .set('x-access-token', token)
       .send(newTrip)
       .end((error, res) => {
         if (error) done(error);
@@ -47,7 +53,7 @@ describe('Admin Create Trips', () => {
         expect(res.body.data.bus_id).to.be.a('number');
         expect(res.body.data.destination).to.be.a('string');
         expect(res.body.data.trip_date).to.be.a('string');
-        expect(res.body.data.fare).to.be.a('float');
+        expect(res.body.data.fare).to.be.a('number');
         done();
       });
   });

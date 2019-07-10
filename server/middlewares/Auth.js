@@ -18,9 +18,9 @@ const Auth = {
     try {
       const token = req.headers['x-access-token'];
       const userObject = jwt.verify(token, process.env.SECRET);
-      const getUser = 'SELECT * FROM WHERE eamil = $1';
-      await db.query(getUser, [userObject.email]);
-      req.user = { email: userObject.email };
+      const getUser = 'SELECT * FROM users WHERE email = $1';
+      await db.query(getUser, [userObject.userEmail]);
+      req.user = { email: userObject.userEmail };
       return next();
     } catch (error) {
       return res.status(403).send({
