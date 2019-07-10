@@ -5,8 +5,11 @@ const BookingsModel = {
           id SERIAL,
           trip_id INT,
           user_id INT,
+          bus_id INT,
+          trip_date TIMESTAMP,
           seat_number INT,
           createdOn TIMESTAMP,
+          modifiedOn TIMESTAMP,
           PRIMARY KEY (trip_id, user_id)
         )`;
     return bookingsTableQuery;
