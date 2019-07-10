@@ -25,7 +25,7 @@ describe('User Signup', () => {
         expect(res.body.data.user_id).to.be.a('number');
         expect(res.body.data.is_admin).to.be.a('boolean');
         expect(res.body.data.token).to.be.a('string');
-        done(error);
+        done();
       });
   });
 });

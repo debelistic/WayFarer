@@ -1,6 +1,9 @@
 import db from '../db';
 import Helper from '../utils/Helper';
 
+const getUser = 'SELECT * FROM users WHERE email = $1';
+
+
 const ValidateUserInput = {
 
   /**
@@ -112,6 +115,17 @@ const ValidateUserInput = {
       });
     }
     return next();
+  },
+
+  async adminCheck(req, res, next) {
+    const { email } = req.user;
+    const { rows } = await db.query(getUser, [email]);
+    const user = rows[0];
+    if (user.is_admin) return next();
+    return res.status(403).send({
+      status: 'error',
+      message: 'only admins can create trips',
+    });
   },
 };
 
