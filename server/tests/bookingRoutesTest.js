@@ -74,15 +74,15 @@ describe('Admin view all booking', () => {
 // user delete their own booking {delete}
 describe('User delete trip', () => {
   it('DELETE a user booking', (done) => {
-    const bookingId = 12;
+    const bookingId = 6;
     chai.request(app)
-      .delete(`/api/v1/bookings/:${bookingId}`)
+      .delete(`/api/v1/bookings/${bookingId}`)
       .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
-        expect(res.status).to.equal(204);
+        expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.body.data).to.be.an('array');
+        expect(res.body.data).to.be.an('object');
         expect(res.body.data).to.have.key('message');
         done();
       });

@@ -21,5 +21,12 @@ Router.get(
   BookingsController.getBooking,
 );
 
+Router.delete(
+  '/bookings/:bookingId',
+  Auth.checkToken,
+  Auth.verifyToken,
+  UserValidator.userCheck,
+  BookingsController.deleteBooking,
+);
 
 export default Router;

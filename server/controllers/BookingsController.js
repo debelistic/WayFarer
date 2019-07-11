@@ -10,6 +10,7 @@ const createBookingQuery = `INSERT INTO
         VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
 const adminGetQuery = 'SELECT * FROM bookings';
 const userGetQuery = 'SELECT * FROM bookings WHERE user_id = $1';
+const deleteQuery = 'DELETE FROM bookings WHERE id = $1 AND user_id = $2';
 
 
 const BookingsController = {
@@ -65,6 +66,26 @@ const BookingsController = {
       return res.status(500).send({
         status: 'error',
         message: error,
+      });
+    }
+  },
+
+  async deleteBooking(req, res) {
+    try {
+      const userDetails = req.user;
+
+      await db.query(deleteQuery, [req.params.bookingId, userDetails.id]);
+
+      return res.status(200).send({
+        status: 'success',
+        data: {
+          message: 'Booking successfully deleted',
+        },
+      });
+    } catch (error) {
+      return res.status(404).send({
+        status: 'error',
+        message: 'Booking not found',
       });
     }
   },
