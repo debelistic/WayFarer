@@ -9,6 +9,7 @@ const createTripQuery = `INSERT INTO
         trips(bus_id, origin, destination, trip_date, fare, created_on, modified_on)
         VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
 const getTripsQuery = 'SELECT * FROM trips';
+const getTripsByDestinationQuery = 'SELECT * FROM trips WHERE destination = $1';
 const cancelTripQuery = 'UPDATE trips SET status=$1, modified_on=$2 WHERE id = $3 RETURNING *';
 const TripsController = {
   async createTrip(req, res) {
@@ -68,6 +69,21 @@ const TripsController = {
           status: rows[0].status,
           modified_on: rows[0].modified_on,
         },
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 'error',
+        message: error,
+      });
+    }
+  },
+
+  async geTripsByDestination(req, res) {
+    try {
+      const { rows } = await db.query(getTripsByDestinationQuery, [req.params.destination]);
+      return res.status(200).send({
+        status: 'success',
+        data: rows,
       });
     } catch (error) {
       return res.status(500).send({

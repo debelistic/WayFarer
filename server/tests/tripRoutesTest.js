@@ -80,7 +80,7 @@ describe('Get Trips by Origin', () => {
 // get trips by destiabtion
 describe('Get Trips by Destination', () => {
   it('Get all Trips by specified Destination', (done) => {
-    const tripDestination = 'Lema';
+    const tripDestination = 'Talisman';
     chai.request(app)
       .get(`/api/v1/trips/${tripDestination}`)
       .set('x-access-token', token)
@@ -102,7 +102,6 @@ describe('Admin Cancel Trip', () => {
       .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
-        console.log(res.body);
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.be.an('object');
