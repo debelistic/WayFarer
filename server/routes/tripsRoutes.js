@@ -28,4 +28,11 @@ Router.patch(
   TripsController.cancelTrip,
 );
 
+Router.get(
+  '/trips/:destination',
+  Auth.checkToken,
+  Auth.verifyToken,
+  TripsController.geTripsByDestination,
+);
+
 export default Router;
