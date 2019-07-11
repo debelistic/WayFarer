@@ -1,10 +1,16 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import jwt from 'jsonwebtoken';
 import app from '../app';
 
 const { expect } = chai;
 
 chai.use(chaiHttp);
+
+const token = jwt.sign({
+  userEmail: 'tipgrave0@123-reg.co.uk',
+},
+process.env.SECRET, { expiresIn: '3d' });
 
 // user book trip {post}
 describe('Admin add bus', () => {
@@ -19,12 +25,13 @@ describe('Admin add bus', () => {
     };
     chai.request(app)
       .post('/api/v1/buses')
+      .set('x-access-token', token)
       .send(newBus)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(201);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.body.data).to.have.keys('number_plate', 'maunfacturer', 'model', 'year', 'capacity');
+        expect(res.body.data).to.have.keys('number_plate', 'maunfacturer', 'model', 'status', 'year', 'capacity', 'created_on');
         done();
       });
   });
@@ -34,6 +41,7 @@ describe('Admin view all available bues', () => {
   it('GET available buses', (done) => {
     chai.request(app)
       .get('/api/v1/buses')
+      .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
