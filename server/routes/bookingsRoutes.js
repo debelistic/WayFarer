@@ -13,5 +13,13 @@ Router.post(
   BookingsController.createBooking,
 );
 
+Router.get(
+  '/bookings',
+  Auth.checkToken,
+  Auth.verifyToken,
+  UserValidator.userCheck,
+  BookingsController.getBooking,
+);
+
 
 export default Router;

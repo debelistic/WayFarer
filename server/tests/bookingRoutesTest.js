@@ -12,6 +12,11 @@ const token = jwt.sign({
 },
 process.env.SECRET, { expiresIn: '3d' });
 
+const userToken = jwt.sign({
+  userEmail: 'dhazeley2@cdc.gov',
+},
+process.env.SECRET, { expiresIn: '3d' });
+
 // user book trip {post}
 describe('User book a seat on a trip', () => {
   it('POST booking', (done) => {
@@ -41,7 +46,7 @@ describe('User view their booking', () => {
   it('GET booking of a user', (done) => {
     chai.request(app)
       .get('/api/v1/bookings')
-      .set('x-access-token', token)
+      .set('x-access-token', userToken)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
