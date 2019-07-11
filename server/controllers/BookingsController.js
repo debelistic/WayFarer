@@ -10,7 +10,9 @@ const createBookingQuery = `INSERT INTO
         VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
 const adminGetQuery = 'SELECT * FROM bookings';
 const userGetQuery = 'SELECT * FROM bookings WHERE user_id = $1';
+const userGetABookingQuery = 'SELECT * FROM bookings WHERE user_id = $1 AND id=$2';
 const deleteQuery = 'DELETE FROM bookings WHERE id = $1 AND user_id = $2';
+const changeSeatNumberQuery = 'UPDATE bookings SET seat_number=$1, modified_on=$2 WHERE id = $3 AND user_id=$4 RETURNING *';
 
 
 const BookingsController = {
@@ -73,6 +75,16 @@ const BookingsController = {
   async deleteBooking(req, res) {
     try {
       const userDetails = req.user;
+      const { rows } = await db.query(userGetABookingQuery, [userDetails.id, req.params.bookingId]);
+
+      if (rows.length < 1) {
+        return res.status(404).send({
+          status: 'error',
+          data: {
+            message: 'Booking not found',
+          },
+        });
+      }
 
       await db.query(deleteQuery, [req.params.bookingId, userDetails.id]);
 
@@ -83,9 +95,37 @@ const BookingsController = {
         },
       });
     } catch (error) {
-      return res.status(404).send({
+      return res.status(500).send({
         status: 'error',
-        message: 'Booking not found',
+        message: error,
+      });
+    }
+  },
+
+  async changeSeatNumber(req, res) {
+    try {
+      const userDetails = req.user;
+      const { rows } = await db.query(changeSeatNumberQuery,
+        [req.body.seat_number, new Date(), req.params.bookingId, userDetails.id]);
+      if (rows.length < 1) {
+        return res.status(404).send({
+          status: 'error',
+          data: {
+            message: 'Booking not found',
+          },
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        data: {
+          message: 'You have successfully changed your seat number',
+          booking: rows[0],
+        },
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 'error',
+        message: error,
       });
     }
   },
