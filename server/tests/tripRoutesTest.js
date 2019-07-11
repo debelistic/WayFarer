@@ -64,9 +64,9 @@ describe('Admin Create Trips', () => {
 // get trips by origin
 describe('Get Trips by Origin', () => {
   it('Get all Trips by specified Origin', (done) => {
-    const tripOrigin = 'Sans';
+    const tripOrigin = 'Santo Tomas';
     chai.request(app)
-      .get(`/api/v1/trips/${tripOrigin}`)
+      .get(`/api/v1/trips/origin/${tripOrigin}`)
       .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
@@ -82,7 +82,7 @@ describe('Get Trips by Destination', () => {
   it('Get all Trips by specified Destination', (done) => {
     const tripDestination = 'Talisman';
     chai.request(app)
-      .get(`/api/v1/trips/${tripDestination}`)
+      .get(`/api/v1/trips/destination/${tripDestination}`)
       .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);

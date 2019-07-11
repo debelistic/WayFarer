@@ -29,10 +29,17 @@ Router.patch(
 );
 
 Router.get(
-  '/trips/:destination',
+  '/trips/destination/:destination',
   Auth.checkToken,
   Auth.verifyToken,
-  TripsController.geTripsByDestination,
+  TripsController.getTripsByDestination,
+);
+
+Router.get(
+  '/trips/origin/:origin',
+  Auth.checkToken,
+  Auth.verifyToken,
+  TripsController.getTripsByOrigin,
 );
 
 export default Router;
