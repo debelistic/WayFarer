@@ -4,6 +4,8 @@ import { config } from 'dotenv';
 import userRoutes from './routes/userRoutes';
 import tripsRoutes from './routes/tripsRoutes';
 import bookingsRoutes from './routes/bookingsRoutes';
+import busesRoutes from './routes/busesRoutes';
+
 
 const app = express();
 
@@ -15,6 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api/v1', userRoutes);
 app.use('/api/v1', tripsRoutes);
 app.use('/api/v1', bookingsRoutes);
+app.use('/api/v1', busesRoutes);
+
 
 // CORS Headers Access
 app.use((req, res, next) => {
