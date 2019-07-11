@@ -8,6 +8,8 @@ config();
 const createBookingQuery = `INSERT INTO
         bookings(trip_id, user_id, bus_id, trip_date, seat_number, createdOn, modifiedOn)
         VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
+const adminGetQuery = 'SELECT * FROM bookings';
+const userGetQuery = 'SELECT * FROM bookings WHERE user_id = $1';
 
 
 const BookingsController = {
@@ -24,7 +26,7 @@ const BookingsController = {
         status: 'success',
         data: {
           booking_id: rows[0].id,
-          user_id: userDetails.id,
+          user_id: rows[0].user_id,
           trip_id: rows[0].trip_id,
           bus_id: rows[0].bus_id,
           trip_date: rows[0].trip_date,
@@ -33,6 +35,31 @@ const BookingsController = {
           last_name: userDetails.last_name,
           email: userDetails.email,
         },
+      });
+    } catch (error) {
+      return res.status(500).send({
+        status: 'error',
+        message: error,
+      });
+    }
+  },
+
+  async getBooking(req, res) {
+    try {
+      const userDetails = req.user;
+      let result;
+      if (userDetails.is_admin === true) {
+        result = await db.query(adminGetQuery);
+      } else {
+        result = await db.query(userGetQuery, [userDetails.id]);
+      }
+
+
+      const { rows } = result;
+
+      return res.status(200).send({
+        status: 'success',
+        data: rows,
       });
     } catch (error) {
       return res.status(500).send({
