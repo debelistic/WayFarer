@@ -7,7 +7,7 @@ import Helper from '../utils/Helper';
 config();
 
 const createUserQuery = `INSERT INTO
-        users(email, first_name, last_name, password, createdOn, modifiedOn)
+        users(email, first_name, last_name, password, created_on, modified_on)
         VALUES($1, $2, $3, $4, $5, $6) RETURNING *`;
 
 const loginQuery = 'SELECT * FROM users WHERE email = $1';

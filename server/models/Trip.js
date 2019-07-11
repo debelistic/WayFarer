@@ -23,8 +23,8 @@ const TripModel = {
           trip_date VARCHAR(500) NOT NULL,
           fare FLOAT NOT NULL,
           status trip_status NOT NULL DEFAULT 'active',
-          createdOn TIMESTAMP,
-          modifiedOn TIMESTAMP
+          created_on TIMESTAMP,
+          modified_on TIMESTAMP
         )`;
     return tripsTableQuery;
   },

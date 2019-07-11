@@ -8,8 +8,8 @@ const UserModel = {
           last_name VARCHAR(500) NOT NULL,
           password VARCHAR(500) NOT NULL,
           is_admin BOOLEAN DEFAULT false,
-          createdOn TIMESTAMP,
-          modifiedOn TIMESTAMP
+          created_on TIMESTAMP,
+          modified_on TIMESTAMP
         )`;
     return usersTableQuery;
   },

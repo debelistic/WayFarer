@@ -32,28 +32,21 @@ pool.on('connect', () => {
  */
 const createUsersTable = () => {
   const createQuery = User.createUsersTable();
-  // console.log(createQuery);
   return createQuery;
 };
 
 const createBookingsTable = () => {
   const createQuery = Booking.createBookingsTable();
-  // console.log(createQuery);
-
   return createQuery;
 };
 
 const createTripsTable = () => {
   const createQuery = Trip.createTripsTable();
-  // console.log(createQuery);
-
   return createQuery;
 };
 
 const createBusesTable = () => {
   const createQuery = Bus.createBusesTable();
-  // console.log(createQuery);
-
   return createQuery;
 };
 
@@ -64,13 +57,11 @@ const createBusesTable = () => {
  */
 const createTripStatusEnum = () => {
   const createEnumQuery = Trip.tripStatustype();
-  // console.log(createEnumQuery);
   return createEnumQuery;
 };
 
 const createBusStatusEnum = () => {
   const createEnumQuery = Bus.busStatustype();
-  // console.log(createEnumQuery);
   return createEnumQuery;
 };
 
