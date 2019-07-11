@@ -6,7 +6,7 @@ import db from '../db';
 config();
 
 const createBookingQuery = `INSERT INTO
-        bookings(trip_id, user_id, bus_id, trip_date, seat_number, createdOn, modifiedOn)
+        bookings(trip_id, user_id, bus_id, trip_date, seat_number, created_on, modified_on)
         VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
 const adminGetQuery = 'SELECT * FROM bookings';
 const userGetQuery = 'SELECT * FROM bookings WHERE user_id = $1';

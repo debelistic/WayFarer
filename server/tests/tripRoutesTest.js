@@ -66,7 +66,8 @@ describe('Get Trips by Origin', () => {
   it('Get all Trips by specified Origin', (done) => {
     const tripOrigin = 'Sans';
     chai.request(app)
-      .get(`/api/v1/trips/:${tripOrigin}`)
+      .get(`/api/v1/trips/${tripOrigin}`)
+      .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
@@ -81,7 +82,8 @@ describe('Get Trips by Destination', () => {
   it('Get all Trips by specified Destination', (done) => {
     const tripDestination = 'Lema';
     chai.request(app)
-      .get(`/api/v1/trips/:${tripDestination}`)
+      .get(`/api/v1/trips/${tripDestination}`)
+      .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
@@ -96,13 +98,15 @@ describe('Admin Cancel Trip', () => {
   it('PATCH a Trip', (done) => {
     const tripId = 13;
     chai.request(app)
-      .patch(`/api/v1/trips/:${tripId}`)
+      .patch(`/api/v1/trips/${tripId}`)
+      .set('x-access-token', token)
       .end((error, res) => {
         if (error) done(error);
-        expect(res.status).to.equal(204);
+        console.log(res.body);
+        expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.body.data).to.be.an('array');
-        expect(res.body.data).to.have.key('message');
+        expect(res.body.data).to.be.an('object');
+        expect(res.body.data).to.have.keys('message', 'trip_id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare', 'status', 'modified_on');
         done();
       });
   });

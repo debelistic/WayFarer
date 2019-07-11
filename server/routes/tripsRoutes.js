@@ -20,5 +20,12 @@ Router.get(
   TripsController.getTrips,
 );
 
+Router.patch(
+  '/trips/:tripId',
+  Auth.checkToken,
+  Auth.verifyToken,
+  UserValidator.adminCheck,
+  TripsController.cancelTrip,
+);
 
 export default Router;
