@@ -29,4 +29,12 @@ Router.delete(
   BookingsController.deleteBooking,
 );
 
+Router.patch(
+  '/bookings/:bookingId',
+  Auth.checkToken,
+  Auth.verifyToken,
+  UserValidator.userCheck,
+  BookingsController.changeSeatNumber,
+);
+
 export default Router;

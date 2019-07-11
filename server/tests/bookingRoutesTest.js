@@ -17,6 +17,7 @@ const userToken = jwt.sign({
 },
 process.env.SECRET, { expiresIn: '3d' });
 
+
 // user book trip {post}
 describe('User book a seat on a trip', () => {
   it('POST booking', (done) => {
@@ -74,7 +75,7 @@ describe('Admin view all booking', () => {
 // user delete their own booking {delete}
 describe('User delete trip', () => {
   it('DELETE a user booking', (done) => {
-    const bookingId = 6;
+    const bookingId = 4;
     chai.request(app)
       .delete(`/api/v1/bookings/${bookingId}`)
       .set('x-access-token', token)
@@ -92,16 +93,20 @@ describe('User delete trip', () => {
 // user change seats after booking {patch}
 describe('Change seat number on a booking', () => {
   it('PATCH a user booking', (done) => {
-    const bookingId = 13;
+    const bookingId = 39;
+    const newSeat = {
+      seat_number: 17,
+    };
     chai.request(app)
-      .patch(`/api/v1/bookings/:${bookingId}`)
+      .patch(`/api/v1/bookings/${bookingId}`)
       .set('x-access-token', token)
+      .send(newSeat)
       .end((error, res) => {
         if (error) done(error);
-        expect(res.status).to.equal(204);
+        expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.body.data).to.be.an('array');
-        expect(res.body.data).to.have.key('message');
+        expect(res.body.data).to.be.an('object');
+        expect(res.body.data).to.have.keys('message', 'booking');
         done();
       });
   });
