@@ -33,6 +33,12 @@ const TripsController = {
         },
       });
     } catch (error) {
+      if (error.routine === '_bt_check_unique') {
+        return res.status(404).send({
+          status: 'error',
+          message: 'Trip exist already',
+        });
+      }
       return res.status(500).send({
         status: 'error',
         message: error,
@@ -58,6 +64,15 @@ const TripsController = {
   async cancelTrip(req, res) {
     try {
       const { rows } = await db.query(cancelTripQuery, ['cancelled', new Date(), req.params.tripId]);
+
+      if (rows[0] === undefined) {
+        return res.status(404).send({
+          status: 'error',
+          data: {
+            message: 'Trip not found',
+          },
+        });
+      }
       return res.status(200).send({
         status: 200,
         data: {

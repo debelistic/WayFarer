@@ -8,7 +8,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 
 const token = jwt.sign({
-  userEmail: 'tipgrave0@123-reg.co.uk',
+  userEmail: 'yatto0@ucsd.edu',
 },
 process.env.SECRET, { expiresIn: '3d' });
 
