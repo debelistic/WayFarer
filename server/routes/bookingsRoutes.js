@@ -1,6 +1,7 @@
 import express from 'express';
 import Auth from '../middlewares/Auth';
 import UserValidator from '../middlewares/UserValidator';
+import BookingValidator from '../middlewares/BookingValidator';
 import BookingsController from '../controllers/BookingsController';
 
 const Router = express.Router();
@@ -10,6 +11,7 @@ Router.post(
   Auth.checkToken,
   Auth.verifyToken,
   UserValidator.userCheck,
+  BookingValidator.createBookingValidator,
   BookingsController.createBooking,
 );
 
@@ -26,6 +28,7 @@ Router.delete(
   Auth.checkToken,
   Auth.verifyToken,
   UserValidator.userCheck,
+  BookingValidator.deleteBookingValidator,
   BookingsController.deleteBooking,
 );
 
@@ -34,6 +37,7 @@ Router.patch(
   Auth.checkToken,
   Auth.verifyToken,
   UserValidator.userCheck,
+  BookingValidator.changeSeatNumberValidator,
   BookingsController.changeSeatNumber,
 );
 

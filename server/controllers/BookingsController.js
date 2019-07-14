@@ -10,7 +10,6 @@ const createBookingQuery = `INSERT INTO
         VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
 const adminGetQuery = 'SELECT * FROM bookings';
 const userGetQuery = 'SELECT * FROM bookings WHERE user_id = $1';
-const userGetABookingQuery = 'SELECT * FROM bookings WHERE user_id = $1 AND id=$2';
 const deleteQuery = 'DELETE FROM bookings WHERE id = $1 AND user_id = $2';
 const changeSeatNumberQuery = 'UPDATE bookings SET seat_number=$1, modified_on=$2 WHERE id = $3 AND user_id=$4 RETURNING *';
 
@@ -20,10 +19,10 @@ const BookingsController = {
     try {
       const seatNumber = Math.floor(Math.random() * 45) + 1;
       const busId = Math.floor(Math.random() * 40) + 1;
-      const values = [req.body.trip_id, req.body.user_id, busId, new Date(),
+      const userDetails = req.user;
+      const values = [req.body.trip_id, userDetails.id, busId, new Date(),
         seatNumber, new Date(), new Date()];
       const { rows } = await db.query(createBookingQuery, values);
-      const userDetails = req.user;
 
       return res.status(201).send({
         status: 'success',
@@ -75,17 +74,6 @@ const BookingsController = {
   async deleteBooking(req, res) {
     try {
       const userDetails = req.user;
-      const { rows } = await db.query(userGetABookingQuery, [userDetails.id, req.params.bookingId]);
-
-      if (rows.length < 1) {
-        return res.status(404).send({
-          status: 'error',
-          data: {
-            message: 'Booking not found',
-          },
-        });
-      }
-
       await db.query(deleteQuery, [req.params.bookingId, userDetails.id]);
 
       return res.status(200).send({
@@ -107,14 +95,6 @@ const BookingsController = {
       const userDetails = req.user;
       const { rows } = await db.query(changeSeatNumberQuery,
         [req.body.seat_number, new Date(), req.params.bookingId, userDetails.id]);
-      if (rows.length < 1) {
-        return res.status(404).send({
-          status: 'error',
-          data: {
-            message: 'Booking not found',
-          },
-        });
-      }
       return res.status(200).send({
         status: 200,
         data: {
