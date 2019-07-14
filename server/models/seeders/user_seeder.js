@@ -1,6 +1,6 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import db from '../db';
+import db from '../../db';
 
 const user1 = ['yatto0@ucsd.edu', 'Yalonda', 'Atto', '7vyAnN4RZXpA', true, new Date(), new Date()];
 const user2 = ['gkinworthy1@t-online.de', 'Gonzalo', 'Kinworthy', 'jGSwdAG', true, new Date(), new Date()];

@@ -1,6 +1,6 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import db from '../db';
+import db from '../../db';
 
 
 const booking1 = [7, 20, 7, '3/15/2019', 14, new Date(), new Date()];

@@ -1,6 +1,6 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import db from '../db';
+import db from '../../db';
 
 const trip1 = [1, 'California', 'Michigan', '10/22/2018', '15.76', 'cancelled', new Date(), new Date()];
 const trip2 = [2, 'Minnesota', 'California', '4/4/2019', '31.76', 'cancelled', new Date(), new Date()];

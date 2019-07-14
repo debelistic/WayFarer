@@ -1,6 +1,6 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import db from '../db';
+import db from '../../db';
 
 const bus1 = ['ISU-037-JP', 'Geo', 'Tracker', 'available', 1997, 47, new Date(), new Date()];
 const bus2 = ['CBP-555-QB', 'Mitsubishi', 'Montero', 'available', 1994, 48, new Date(), new Date()];
