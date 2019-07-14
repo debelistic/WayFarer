@@ -1,0 +1,94 @@
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import db from '../db';
+
+const trip1 = [24, 'California', 'Michigan', '10/22/2018', '15.76', 'cancelled', '10:13', '14:19'];
+const trip2 = [17, 'Minnesota', 'California', '4/4/2019', '31.76', 'cancelled', '5:22', '3:40'];
+const trip3 = [14, 'West Virginia', 'Missouri', '3/28/2019', '19.32', 'active', '0:11', '18:08'];
+const trip4 = [22, 'Louisiana', 'California', '12/20/2018', '12.20', 'cancelled', '0:44', '18:24'];
+const trip5 = [36, 'California', 'Alabama', '2/5/2019', '31.11', 'active', '16:20', '16:04'];
+const trip6 = [1, 'Wisconsin', 'Texas', '5/26/2019', '43.32', 'cancelled', '4:31', '6:10'];
+const trip7 = [14, 'Florida', 'California', '8/23/2018', '17.01', 'cancelled', '7:18', '15:08'];
+const trip8 = [26, 'Virginia', 'North Carolina', '4/2/2019', '18.81', 'active', '14:07', '6:48'];
+const trip9 = [5, 'Minnesota', 'Ohio', '8/19/2018', '11.94', 'active', '0:49', '0:02'];
+const trip10 = [5, 'Washington', 'Utah', '7/22/2018', '36.26', 'active', '20:53', '12:02'];
+const trip11 = [16, 'Alabama', 'Ohio', '5/31/2019', '21.45', 'active', '3:53', '21:06'];
+const trip12 = [36, 'Delaware', 'Colorado', '12/3/2018', '30.19', 'cancelled', '9:54', '1:46'];
+const trip13 = [3, 'Minnesota', 'Texas', '4/23/2019', '23.89', 'active', '16:00', '18:08'];
+const trip14 = [27, 'Florida', 'Nevada', '1/22/2019', '12.36', 'active', '2:00', '12:02'];
+const trip15 = [31, 'Florida', 'Colorado', '3/9/2019', '8.04', 'cancelled', '20:44', '3:46'];
+const trip16 = [15, 'Colorado', 'Tennessee', '11/14/2018', '6.29', 'active', '4:38', '7:26'];
+const trip17 = [35, 'Texas', 'Colorado', '2/12/2019', '21.16', 'cancelled', '15:44', '23:05'];
+const trip18 = [18, 'Louisiana', 'Rhode Island', '2/26/2019', '15.23', 'active', '10:35', '5:09'];
+const trip19 = [18, 'Virginia', 'Virginia', '4/21/2019', '39.94', 'active', '14:46', '18:48'];
+const trip20 = [23, 'California', 'Florida', '3/15/2019', '44.39', 'active', '7:07', '23:35'];
+const trip21 = [19, 'District of Columbia', 'Texas', '1/1/2019', '31.13', 'cancelled', '20:37', '10:01'];
+const trip22 = [13, 'Louisiana', 'Kansas', '8/2/2018', '27.12', 'active', '21:43', '15:25'];
+const trip23 = [12, 'New Jersey', 'Minnesota', '12/14/2018', '14.60', 'active', '18:54', '10:59'];
+const trip24 = [33, 'Texas', 'Florida', '10/23/2018', '10.51', 'cancelled', '17:39', '15:53'];
+const trip25 = [33, 'Texas', 'Connecticut', '10/22/2018', '24.65', 'cancelled', '11:58', '0:38'];
+const trip26 = [40, 'Nevada', 'New York', '3/25/2019', '39.65', 'active', '12:31', '2:13'];
+const trip27 = [20, 'Louisiana', 'Nevada', '10/24/2018', '9.71', 'cancelled', '14:36', '8:01'];
+const trip28 = [33, 'Illinois', 'Texas', '2/21/2019', '7.96', 'cancelled', '9:26', '23:29'];
+const trip29 = [38, 'Minnesota', 'Texas', '3/31/2019', '33.56', 'cancelled', '16:37', '20:00'];
+const trip30 = [20, 'Tennessee', 'Colorado', '5/18/2019', '6.73', 'cancelled', '16:40', '4:28'];
+const trip31 = [25, 'Texas', 'Louisiana', '9/25/2018', '25.38', 'active', '9:07', '11:16'];
+const trip32 = [8, 'New York', 'New York', '11/4/2018', '27.08', 'active', '6:48', '6:52'];
+const trip33 = [36, 'Missouri', 'Texas', '4/5/2019', '41.82', 'active', '8:03', '2:36'];
+const trip34 = [15, 'Florida', 'Tennessee', '11/30/2018', '28.57', 'cancelled', '18:44', '6:51'];
+const trip35 = [8, 'Washington', 'Michigan', '10/4/2018', '19.08', 'cancelled', '15:50', '22:15'];
+const trip36 = [3, 'Georgia', 'Virginia', '5/30/2019', '8.32', 'cancelled', '20:46', '20:09'];
+const trip37 = [39, 'Georgia', 'California', '5/31/2019', '44.00', 'active', '9:08', '9:55'];
+const trip38 = [5, 'Alabama', 'Oklahoma', '12/3/2018', '17.12', 'active', '2:06', '16:38'];
+const trip39 = [10, 'Virginia', 'North Carolina', '9/7/2018', '18.82', 'cancelled', '20:06', '21:25'];
+const trip40 = [23, 'California', 'New York', '12/14/2018', '31.88', 'active', '19:32', '14:52'];
+
+
+const seedtrips = async () => {
+  const createtripQuery = `INSERT INTO
+        trips(bus_id, origin, destination, trip_date, fare, created_on, modified_on)
+        VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
+
+  await db.query(createtripQuery, trip1);
+  await db.query(createtripQuery, trip2);
+  await db.query(createtripQuery, trip3);
+  await db.query(createtripQuery, trip4);
+  await db.query(createtripQuery, trip5);
+  await db.query(createtripQuery, trip6);
+  await db.query(createtripQuery, trip7);
+  await db.query(createtripQuery, trip8);
+  await db.query(createtripQuery, trip9);
+  await db.query(createtripQuery, trip10);
+  await db.query(createtripQuery, trip11);
+  await db.query(createtripQuery, trip12);
+  await db.query(createtripQuery, trip13);
+  await db.query(createtripQuery, trip14);
+  await db.query(createtripQuery, trip15);
+  await db.query(createtripQuery, trip16);
+  await db.query(createtripQuery, trip17);
+  await db.query(createtripQuery, trip18);
+  await db.query(createtripQuery, trip19);
+  await db.query(createtripQuery, trip20);
+  await db.query(createtripQuery, trip21);
+  await db.query(createtripQuery, trip22);
+  await db.query(createtripQuery, trip23);
+  await db.query(createtripQuery, trip24);
+  await db.query(createtripQuery, trip25);
+  await db.query(createtripQuery, trip26);
+  await db.query(createtripQuery, trip27);
+  await db.query(createtripQuery, trip28);
+  await db.query(createtripQuery, trip29);
+  await db.query(createtripQuery, trip30);
+  await db.query(createtripQuery, trip31);
+  await db.query(createtripQuery, trip32);
+  await db.query(createtripQuery, trip33);
+  await db.query(createtripQuery, trip34);
+  await db.query(createtripQuery, trip35);
+  await db.query(createtripQuery, trip36);
+  await db.query(createtripQuery, trip37);
+  await db.query(createtripQuery, trip38);
+  await db.query(createtripQuery, trip39);
+  await db.query(createtripQuery, trip40);
+};
+
+seedtrips();
