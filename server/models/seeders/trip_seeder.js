@@ -1,0 +1,94 @@
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import db from '../../db';
+
+const trip1 = [1, 'California', 'Michigan', '10/22/2018', '15.76', 'cancelled', new Date(), new Date()];
+const trip2 = [2, 'Minnesota', 'California', '4/4/2019', '31.76', 'cancelled', new Date(), new Date()];
+const trip3 = [3, 'West Virginia', 'Missouri', '3/28/2019', '19.32', 'active', new Date(), new Date()];
+const trip4 = [4, 'Louisiana', 'California', '12/20/2018', '12.20', 'cancelled', new Date(), new Date()];
+const trip5 = [6, 'California', 'Alabama', '2/5/2019', '31.11', 'active', new Date(), new Date()];
+const trip6 = [7, 'Wisconsin', 'Texas', '5/26/2019', '43.32', 'cancelled', new Date(), new Date()];
+const trip7 = [8, 'Florida', 'California', '8/23/2018', '17.01', 'cancelled', new Date(), new Date()];
+const trip8 = [9, 'Virginia', 'North Carolina', '4/2/2019', '18.81', 'active', new Date(), new Date()];
+const trip9 = [10, 'Minnesota', 'Ohio', '8/19/2018', '11.94', 'active', new Date(), new Date()];
+const trip10 = [11, 'Washington', 'Utah', '7/22/2018', '36.26', 'active', new Date(), new Date()];
+const trip11 = [12, 'Alabama', 'Ohio', '5/31/2019', '21.45', 'active', new Date(), new Date()];
+const trip12 = [13, 'Delaware', 'Colorado', '12/3/2018', '30.19', 'cancelled', new Date(), new Date()];
+const trip13 = [14, 'Minnesota', 'Texas', '4/23/2019', '23.89', 'active', new Date(), new Date()];
+const trip14 = [15, 'Florida', 'Nevada', '1/22/2019', '12.36', 'active', new Date(), new Date()];
+const trip15 = [16, 'Florida', 'Colorado', '3/9/2019', '8.04', 'cancelled', new Date(), new Date()];
+const trip16 = [17, 'Colorado', 'Tennessee', '11/14/2018', '6.29', 'active', new Date(), new Date()];
+const trip17 = [18, 'Texas', 'Colorado', '2/12/2019', '21.16', 'cancelled', new Date(), new Date()];
+const trip18 = [19, 'Louisiana', 'Rhode Island', '2/26/2019', '15.23', 'active', new Date(), new Date()];
+const trip19 = [20, 'Virginia', 'Virginia', '4/21/2019', '39.94', 'active', new Date(), new Date()];
+const trip20 = [21, 'California', 'Florida', '3/15/2019', '44.39', 'active', new Date(), new Date()];
+const trip21 = [22, 'District of Columbia', 'Texas', '1/1/2019', '31.13', 'cancelled', new Date(), new Date()];
+const trip22 = [23, 'Louisiana', 'Kansas', '8/2/2018', '27.12', 'active', new Date(), new Date()];
+const trip23 = [24, 'New Jersey', 'Minnesota', '12/14/2018', '14.60', 'active', new Date(), new Date()];
+const trip24 = [25, 'Texas', 'Florida', '10/23/2018', '10.51', 'cancelled', new Date(), new Date()];
+const trip25 = [26, 'Texas', 'Connecticut', '10/22/2018', '24.65', 'cancelled', new Date(), new Date()];
+const trip26 = [27, 'Nevada', 'New York', '3/25/2019', '39.65', 'active', new Date(), new Date()];
+const trip27 = [28, 'Louisiana', 'Nevada', '10/24/2018', '9.71', 'cancelled', new Date(), new Date()];
+const trip28 = [29, 'Illinois', 'Texas', '2/21/2019', '7.96', 'cancelled', new Date(), new Date()];
+const trip29 = [30, 'Minnesota', 'Texas', '3/31/2019', '33.56', 'cancelled', new Date(), new Date()];
+const trip30 = [31, 'Tennessee', 'Colorado', '5/18/2019', '6.73', 'cancelled', new Date(), new Date()];
+const trip31 = [32, 'Texas', 'Louisiana', '9/25/2018', '25.38', 'active', new Date(), new Date()];
+const trip32 = [33, 'New York', 'New York', '11/4/2018', '27.08', 'active', new Date(), new Date()];
+const trip33 = [34, 'Missouri', 'Texas', '4/5/2019', '41.82', 'active', new Date(), new Date()];
+const trip34 = [35, 'Florida', 'Tennessee', '11/30/2018', '28.57', 'cancelled', new Date(), new Date()];
+const trip35 = [36, 'Washington', 'Michigan', '10/4/2018', '19.08', 'cancelled', new Date(), new Date()];
+const trip36 = [37, 'Georgia', 'Virginia', '5/30/2019', '8.32', 'cancelled', new Date(), new Date()];
+const trip37 = [38, 'Georgia', 'California', '5/31/2019', '44.00', 'active', new Date(), new Date()];
+const trip38 = [39, 'Alabama', 'Oklahoma', '12/3/2018', '17.12', 'active', new Date(), new Date()];
+const trip39 = [40, 'Virginia', 'North Carolina', '9/7/2018', '18.82', 'cancelled', new Date(), new Date()];
+const trip40 = [5, 'California', 'New York', '12/14/2018', '31.88', 'active', new Date(), new Date()];
+
+
+const seedtrips = async () => {
+  const createtripQuery = `INSERT INTO
+        trips(bus_id, origin, destination, trip_date, fare, status, created_on, modified_on)
+        VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
+
+  await db.query(createtripQuery, trip1);
+  await db.query(createtripQuery, trip2);
+  await db.query(createtripQuery, trip3);
+  await db.query(createtripQuery, trip4);
+  await db.query(createtripQuery, trip5);
+  await db.query(createtripQuery, trip6);
+  await db.query(createtripQuery, trip7);
+  await db.query(createtripQuery, trip8);
+  await db.query(createtripQuery, trip9);
+  await db.query(createtripQuery, trip10);
+  await db.query(createtripQuery, trip11);
+  await db.query(createtripQuery, trip12);
+  await db.query(createtripQuery, trip13);
+  await db.query(createtripQuery, trip14);
+  await db.query(createtripQuery, trip15);
+  await db.query(createtripQuery, trip16);
+  await db.query(createtripQuery, trip17);
+  await db.query(createtripQuery, trip18);
+  await db.query(createtripQuery, trip19);
+  await db.query(createtripQuery, trip20);
+  await db.query(createtripQuery, trip21);
+  await db.query(createtripQuery, trip22);
+  await db.query(createtripQuery, trip23);
+  await db.query(createtripQuery, trip24);
+  await db.query(createtripQuery, trip25);
+  await db.query(createtripQuery, trip26);
+  await db.query(createtripQuery, trip27);
+  await db.query(createtripQuery, trip28);
+  await db.query(createtripQuery, trip29);
+  await db.query(createtripQuery, trip30);
+  await db.query(createtripQuery, trip31);
+  await db.query(createtripQuery, trip32);
+  await db.query(createtripQuery, trip33);
+  await db.query(createtripQuery, trip34);
+  await db.query(createtripQuery, trip35);
+  await db.query(createtripQuery, trip36);
+  await db.query(createtripQuery, trip37);
+  await db.query(createtripQuery, trip38);
+  await db.query(createtripQuery, trip39);
+  await db.query(createtripQuery, trip40);
+};
+
+seedtrips();

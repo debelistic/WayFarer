@@ -1,0 +1,94 @@
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import db from '../../db';
+
+const bus1 = ['ISU-037-JP', 'Geo', 'Tracker', 'available', 1997, 47, new Date(), new Date()];
+const bus2 = ['CBP-555-QB', 'Mitsubishi', 'Montero', 'available', 1994, 48, new Date(), new Date()];
+const bus3 = ['SQF-696-MG', 'Ford', 'F250', 'unavailable', 1996, 53, new Date(), new Date()];
+const bus4 = ['UMH-352-JV', 'Subaru', 'Tribeca', 'available', 2012, 45, new Date(), new Date()];
+const bus5 = ['KCI-482-RT', 'Maserati', 'Gran Sport', 'available', 2005, 60, new Date(), new Date()];
+const bus6 = ['DCE-110-DG', 'Audi', 'Q7', 'available', 2009, 47, new Date(), new Date()];
+const bus7 = ['FTP-288-OO', 'Geo', 'Metro', 'available', 1996, 51, new Date(), new Date()];
+const bus8 = ['WQV-185-CG', 'Hummer', 'H1', 'unavailable', 1997, 63, new Date(), new Date()];
+const bus9 = ['JGI-665-MG', 'Acura', 'TSX', 'available', 2011, 62, new Date(), new Date()];
+const bus10 = ['MSG-437-HW', 'Buick', 'Park Avenue', 'available', 1999, 63, new Date(), new Date()];
+const bus11 = ['KPR-184-OY', 'Pontiac', 'Grand Prix', 'available', 1988, 70, new Date(), new Date()];
+const bus12 = ['NSS-060-IH', 'Chevrolet', 'Silverado 2500', 'available', 2009, 49, new Date(), new Date()];
+const bus13 = ['EKO-111-OB', 'Ford', 'Mustang', 'available', 1994, 46, new Date(), new Date()];
+const bus14 = ['TPX-041-QH', 'GMC', '1500', 'unavailable', 1998, 57, new Date(), new Date()];
+const bus15 = ['PPG-150-XD', 'Lincoln', 'Town Car', 'available', 1995, 49, new Date(), new Date()];
+const bus16 = ['YFE-443-CC', 'Infiniti', 'QX', 'unavailable', 2001, 70, new Date(), new Date()];
+const bus17 = ['FIZ-808-JF', 'Chrysler', '300', 'available', 2006, 58, new Date(), new Date()];
+const bus18 = ['TMY-691-JG', 'Mazda', 'Mazda6', 'unavailable', 2005, 69, new Date(), new Date()];
+const bus19 = ['TPQ-963-SX', 'Buick', 'Somerset', 'unavailable', 1985, 68, new Date(), new Date()];
+const bus20 = ['RST-488-WU', 'Lexus', 'SC', 'available', 1997, 60, new Date(), new Date()];
+const bus21 = ['HVB-593-DR', 'Kia', 'Mentor', 'available', 1997, 50, new Date(), new Date()];
+const bus22 = ['TFJ-913-PA', 'Mercedes-Benz', '500SL', 'unavailable', 1993, 60, new Date(), new Date()];
+const bus23 = ['NJU-556-TN', 'Mercedes-Benz', '300SL', 'available', 1992, 45, new Date(), new Date()];
+const bus24 = ['GTA-239-AI', 'Pontiac', 'Grand Prix', 'available', 1989, 45, new Date(), new Date()];
+const bus25 = ['SFU-311-KT', 'Ford', 'Fusion', 'unavailable', 2008, 65, new Date(), new Date()];
+const bus26 = ['NYF-953-BT', 'Jeep', 'Grand Cherokee', 'available', 2005, 66, new Date(), new Date()];
+const bus27 = ['DWO-613-HW', 'Volkswagen', 'Scirocco', 'unavailable', 1988, 62, new Date(), new Date()];
+const bus28 = ['KIP-016-SK', 'Honda', 'Odyssey', 'unavailable', 2005, 52, new Date(), new Date()];
+const bus29 = ['NXT-003-NX', 'Mazda', 'MX-6', 'available', 1990, 63, new Date(), new Date()];
+const bus30 = ['JMR-496-XK', 'Ford', 'F250', 'available', 1996, 46, new Date(), new Date()];
+const bus31 = ['AOH-795-PO', 'Chevrolet', 'Suburban 2500', 'available', 2006, 51, new Date(), new Date()];
+const bus32 = ['NXQ-384-VF', 'Mazda', 'MX-5', 'available', 1993, 67, new Date(), new Date()];
+const bus33 = ['LIN-690-PH', 'Ford', 'Crown Victoria', 'unavailable', 2008, 57, new Date(), new Date()];
+const bus34 = ['RYH-883-AY', 'Land Rover', 'Discovery', 'unavailable', 1997, 64, new Date(), new Date()];
+const bus35 = ['ILH-613-HU', 'Porsche', '968', 'unavailable', 1994, 47, new Date(), new Date()];
+const bus36 = ['ZHN-449-LC', 'Dodge', 'Stratus', 'unavailable', 2003, 66, new Date(), new Date()];
+const bus37 = ['YLS-238-MG', 'Ford', 'Explorer', 'available', 1993, 52, new Date(), new Date()];
+const bus38 = ['ZDU-016-PQ', 'Pontiac', 'Trans Sport', 'available', 1995, 61, new Date(), new Date()];
+const bus39 = ['CDX-017-ZL', 'Mercedes-Benz', 'S-Class', 'available', 1998, 66, new Date(), new Date()];
+const bus40 = ['KTR-894-LJ', 'Honda', 'Odyssey', 'available', 2007, 71, new Date(), new Date()];
+
+
+const seedbuses = async () => {
+  const createbusQuery = `INSERT INTO
+        buses(number_plate, maunfacturer, model, status, year, capacity, created_on, modified_on)
+        VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
+
+  await db.query(createbusQuery, bus1);
+  await db.query(createbusQuery, bus2);
+  await db.query(createbusQuery, bus3);
+  await db.query(createbusQuery, bus4);
+  await db.query(createbusQuery, bus5);
+  await db.query(createbusQuery, bus6);
+  await db.query(createbusQuery, bus7);
+  await db.query(createbusQuery, bus8);
+  await db.query(createbusQuery, bus9);
+  await db.query(createbusQuery, bus10);
+  await db.query(createbusQuery, bus11);
+  await db.query(createbusQuery, bus12);
+  await db.query(createbusQuery, bus13);
+  await db.query(createbusQuery, bus14);
+  await db.query(createbusQuery, bus15);
+  await db.query(createbusQuery, bus16);
+  await db.query(createbusQuery, bus17);
+  await db.query(createbusQuery, bus18);
+  await db.query(createbusQuery, bus19);
+  await db.query(createbusQuery, bus20);
+  await db.query(createbusQuery, bus21);
+  await db.query(createbusQuery, bus22);
+  await db.query(createbusQuery, bus23);
+  await db.query(createbusQuery, bus24);
+  await db.query(createbusQuery, bus25);
+  await db.query(createbusQuery, bus26);
+  await db.query(createbusQuery, bus27);
+  await db.query(createbusQuery, bus28);
+  await db.query(createbusQuery, bus29);
+  await db.query(createbusQuery, bus30);
+  await db.query(createbusQuery, bus31);
+  await db.query(createbusQuery, bus32);
+  await db.query(createbusQuery, bus33);
+  await db.query(createbusQuery, bus34);
+  await db.query(createbusQuery, bus35);
+  await db.query(createbusQuery, bus36);
+  await db.query(createbusQuery, bus37);
+  await db.query(createbusQuery, bus38);
+  await db.query(createbusQuery, bus39);
+  await db.query(createbusQuery, bus40);
+};
+
+seedbuses();

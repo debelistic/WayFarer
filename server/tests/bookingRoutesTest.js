@@ -8,12 +8,17 @@ const { expect } = chai;
 chai.use(chaiHttp);
 
 const token = jwt.sign({
-  userEmail: 'tipgrave0@123-reg.co.uk',
+  userEmail: 'yatto0@ucsd.edu',
 },
 process.env.SECRET, { expiresIn: '3d' });
 
 const userToken = jwt.sign({
-  userEmail: 'dhazeley2@cdc.gov',
+  userEmail: 'jpontina@topsy.com',
+},
+process.env.SECRET, { expiresIn: '3d' });
+
+const user2Token = jwt.sign({
+  userEmail: 'dsukbhans7@narod.ru',
 },
 process.env.SECRET, { expiresIn: '3d' });
 
@@ -22,7 +27,7 @@ process.env.SECRET, { expiresIn: '3d' });
 describe('User book a seat on a trip', () => {
   it('POST booking', (done) => {
     const newBooking = {
-      user_id: 9,
+      user_id: 1,
       is_admin: false,
       trip_id: 18,
     };
@@ -75,10 +80,10 @@ describe('Admin view all booking', () => {
 // user delete their own booking {delete}
 describe('User delete trip', () => {
   it('DELETE a user booking', (done) => {
-    const bookingId = 4;
+    const bookingId = 39;
     chai.request(app)
       .delete(`/api/v1/bookings/${bookingId}`)
-      .set('x-access-token', token)
+      .set('x-access-token', user2Token)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(200);
@@ -93,13 +98,13 @@ describe('User delete trip', () => {
 // user change seats after booking {patch}
 describe('Change seat number on a booking', () => {
   it('PATCH a user booking', (done) => {
-    const bookingId = 39;
+    const bookingId = 38;
     const newSeat = {
       seat_number: 17,
     };
     chai.request(app)
       .patch(`/api/v1/bookings/${bookingId}`)
-      .set('x-access-token', token)
+      .set('x-access-token', user2Token)
       .send(newSeat)
       .end((error, res) => {
         if (error) done(error);

@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import { Pool } from 'pg';
 import { config } from 'dotenv';
-import User from './User';
-import Trip from './Trip';
-import Bus from './Bus';
-import Booking from './Booking';
+import User from '../User';
+import Trip from '../Trip';
+import Bus from '../Bus';
+import Booking from '../Booking';
 
 config();
 
