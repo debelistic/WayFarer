@@ -40,7 +40,7 @@ const BookingsValidator = {
     if (rows.length < 1) {
       return res.status(400).send({
         status: 'error',
-        message: 'Booking not found',
+        message: 'No trip found',
       });
     }
     return next();
