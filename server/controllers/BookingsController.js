@@ -8,8 +8,8 @@ config();
 const createBookingQuery = `INSERT INTO
         bookings(trip_id, user_id, bus_id, trip_date, seat_number, created_on, modified_on)
         VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
-const adminGetQuery = 'SELECT * FROM bookings';
-const userGetQuery = 'SELECT * FROM bookings WHERE user_id = $1';
+const userGetBookingquery = 'SELECT bookings.id AS booking_id,bookings.user_id,bookings.trip_id, trips.bus_id, trips.trip_date,bookings.seat_number,users.first_name,users.last_name,users.email FROM bookings INNER JOIN users ON bookings.user_id = users.id INNER JOIN trips on bookings.trip_id = trips.id WHERE user_id = $1';
+const admingetBookingsquery = 'SELECT bookings.id AS booking_id,bookings.user_id,bookings.trip_id, trips.bus_id, trips.trip_date,bookings.seat_number,users.first_name,users.last_name,users.email FROM bookings INNER JOIN users ON bookings.user_id = users.id INNER JOIN trips on bookings.trip_id = trips.id';
 const deleteQuery = 'DELETE FROM bookings WHERE id = $1 AND user_id = $2';
 const changeSeatNumberQuery = 'UPDATE bookings SET seat_number=$1, modified_on=$2 WHERE id = $3 AND user_id=$4 RETURNING *';
 
@@ -51,14 +51,13 @@ const BookingsController = {
       const userDetails = req.user;
       let result;
       if (userDetails.is_admin === true) {
-        result = await db.query(adminGetQuery);
+        result = await db.query(admingetBookingsquery);
       } else {
-        result = await db.query(userGetQuery, [userDetails.id]);
+        result = await db.query(userGetBookingquery, [userDetails.id]);
       }
 
 
       const { rows } = result;
-
       return res.status(200).send({
         status: 'success',
         data: rows,
