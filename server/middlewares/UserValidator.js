@@ -30,6 +30,8 @@ const ValidateUserInput = {
    * @param {object} next
    */
   async names(req, res, next) {
+    console.log(req.body);
+    
     if (!req.body.first_name || !req.body.last_name) {
       return res.status(400).send({
         status: 'error',
