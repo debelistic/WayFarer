@@ -37,7 +37,6 @@ app.get('/', (req, res) => {
     message: 'Welcome to Way Farer',
   });
 });
-app.use('/api/v1', userRoutes);
 
 // Error handler middlewares
 app.use((req, res, next) => {
@@ -51,7 +50,7 @@ app.use((error, req, res, next) => {
   const { message } = error;
   res.status(error.status || 500).send({
     status: 'error',
-    message,
+    error: message,
   });
 });
 
