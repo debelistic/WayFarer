@@ -27,7 +27,7 @@ const BookingsController = {
       return res.status(201).send({
         status: 'success',
         data: {
-          booking_id: rows[0].id,
+          id: rows[0].id,
           user_id: rows[0].user_id,
           trip_id: rows[0].trip_id,
           bus_id: rows[0].bus_id,

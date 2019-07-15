@@ -255,7 +255,7 @@ describe('Admin Cancel Trip', () => {
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.be.an('object');
-        expect(res.body.data).to.have.keys('message', 'trip_id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare', 'status', 'modified_on');
+        expect(res.body.data).to.have.keys('message', 'id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare', 'status', 'modified_on');
         done();
       });
   });

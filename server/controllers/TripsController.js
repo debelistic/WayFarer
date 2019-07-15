@@ -63,7 +63,7 @@ const TripsController = {
         status: 200,
         data: {
           message: 'Trip successfully cancelled',
-          trip_id: rows[0].id,
+          id: rows[0].id,
           bus_id: rows[0].bus_id,
           origin: rows[0].origin,
           destination: rows[0].destination,

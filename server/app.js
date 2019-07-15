@@ -22,8 +22,8 @@ app.use('/api/v1', busesRoutes);
 
 // CORS Headers Access
 app.use((req, res, next) => {
-  res.header('Access-Controll-Allow-Origin', '*');
-  res.header(
+  req.header('Access-Controll-Allow-Origin', '*');
+  req.header(
     'Access-Controll-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization',
   );
