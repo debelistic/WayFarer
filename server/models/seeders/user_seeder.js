@@ -75,5 +75,4 @@ const seedusers = async () => {
   await db.query(createuserQuery, user20);
 };
 
-createAdmin();
 seedusers();
