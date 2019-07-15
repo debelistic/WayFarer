@@ -83,7 +83,7 @@
     "regenerator-runtime": "^0.13.2"
   },
   "engines": {
-    "node": "2.5.0",
+    "node": "12.5.0",
     "npm": "6.9.0"
   }
 }
