@@ -24,7 +24,7 @@ const TripsController = {
       return res.status(201).send({
         status: 'success',
         data: {
-          trip_id: rows[0].id,
+          id: rows[0].id,
           bus_id: rows[0].bus_id,
           origin: rows[0].origin,
           destination: rows[0].destination,
