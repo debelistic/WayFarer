@@ -15,7 +15,8 @@ const ValidateUserInput = {
   async bodyCheck(req, res, next) {
     if (req.body === null) {
       return res.status(400).send({
-        message: 'Enter details',
+        status: 'error',
+        error: 'Enter details',
       });
     }
     return next();
@@ -31,7 +32,8 @@ const ValidateUserInput = {
   async names(req, res, next) {
     if (!req.body.first_name || !req.body.last_name) {
       return res.status(400).send({
-        message: 'Enter your first name and last name ',
+        status: 'error',
+        error: 'Enter your first name and last name ',
       });
     }
     return next();
@@ -41,7 +43,8 @@ const ValidateUserInput = {
   async password(req, res, next) {
     if (!/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{6,}$/.test(req.body.password) || !req.body.password) {
       return res.status(400).send({
-        message: 'Password should contain at least a lower and upper case, a digit',
+        status: 'error',
+        error: 'Password should contain at least a lower and upper case, a digit',
       });
     }
     return next();
@@ -50,7 +53,8 @@ const ValidateUserInput = {
   async validateMail(req, res, next) {
     if (!req.body.email || !/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.email)) {
       return res.status(400).send({
-        message: 'Enter a valid email',
+        status: 'error',
+        error: 'Enter a valid email',
       });
     }
     return next();
@@ -59,7 +63,8 @@ const ValidateUserInput = {
   async loginField(req, res, next) {
     if (!req.body.email || !req.body.password) {
       return res.status(401).send({
-        message: 'Enter email and password',
+        status: 'error',
+        error: 'Enter email and password',
       });
     }
     return next();
@@ -72,13 +77,14 @@ const ValidateUserInput = {
       const { rows } = await db.query(loginQuery, [userEmail]);
       if (rows[0] === undefined) {
         return res.status(403).send({
-          mesage: 'You are not a registered',
+          status: 'error',
+          error: 'You are not a registered',
         });
       }
       return next();
     } catch (error) {
       return res.status(400).send({
-        message: 'Invaild email',
+        status: 'error',
         error,
       });
     }
@@ -90,7 +96,8 @@ const ValidateUserInput = {
     const { rows } = await db.query(loginQuery, [userEmail]);
     if (!Helper.comparePassword(req.body.password, rows[0].password)) {
       return res.status(401).send({
-        message: 'Invalid Password',
+        status: 'error',
+        error: 'Invalid Password',
       });
     }
     return next();
@@ -99,7 +106,8 @@ const ValidateUserInput = {
   async checkUser(req, res, next) {
     if (!req.user) {
       return res.status(400).send({
-        message: 'Login to your account',
+        status: 'error',
+        error: 'Login to your account',
       });
     }
     return next();
@@ -111,7 +119,8 @@ const ValidateUserInput = {
     const message = 'The email you entered is associated to an account';
     if (rows[0]) {
       return res.status(400).send({
-        message,
+        status: 'error',
+        error: message,
       });
     }
     return next();
@@ -124,7 +133,7 @@ const ValidateUserInput = {
     if (user.is_admin) return next();
     return res.status(403).send({
       status: 'error',
-      message: 'only admins can create trips',
+      error: 'only admins can create trips',
     });
   },
 
@@ -136,7 +145,7 @@ const ValidateUserInput = {
     if (user) return next();
     return res.status(403).send({
       status: 'error',
-      message: 'login into your account',
+      error: 'login into your account',
     });
   },
 };
