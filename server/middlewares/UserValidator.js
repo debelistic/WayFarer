@@ -43,17 +43,17 @@ const ValidateUserInput = {
 
 
   async password(req, res, next) {
-    if (!/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).{6,}$/.test(req.body.password) || !req.body.password) {
+    if (!req.body.password) {
       return res.status(400).send({
         status: 'error',
-        error: 'Password should contain at least a lower and upper case, a digit',
+        error: 'Enter password',
       });
     }
     return next();
   },
 
   async validateMail(req, res, next) {
-    if (!req.body.email || !/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(req.body.email)) {
+    if (!req.body.email) {
       return res.status(400).send({
         status: 'error',
         error: 'Enter a valid email',
