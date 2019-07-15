@@ -47,6 +47,25 @@ describe('User book a seat on a trip', () => {
       });
   });
 });
+
+describe('User book a seat on a trip', () => {
+  it('Return 400 if user does not specify Trip', (done) => {
+    const newBooking = {
+      user_id: 1,
+      is_admin: false,
+    };
+    chai.request(app)
+      .post('/api/v1/bookings')
+      .set('x-access-token', token)
+      .send(newBooking)
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).to.equal(400);
+        expect(res.body).to.have.keys('status', 'message');
+        done();
+      });
+  });
+});
 // user see their own booking {get}
 describe('User view their booking', () => {
   it('GET booking of a user', (done) => {
@@ -95,6 +114,21 @@ describe('User delete trip', () => {
   });
 });
 
+describe('User delete trip', () => {
+  it('Return 400 if Booking is Not Found', (done) => {
+    const bookingId = 9;
+    chai.request(app)
+      .delete(`/api/v1/bookings/${bookingId}`)
+      .set('x-access-token', user2Token)
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).to.equal(400);
+        expect(res.body).to.have.keys('status', 'message');
+        done();
+      });
+  });
+});
+
 // user change seats after booking {patch}
 describe('Change seat number on a booking', () => {
   it('PATCH a user booking', (done) => {
@@ -112,6 +146,25 @@ describe('Change seat number on a booking', () => {
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.be.an('object');
         expect(res.body.data).to.have.keys('message', 'booking');
+        done();
+      });
+  });
+});
+
+describe('Change seat number on a booking', () => {
+  it('Return 400 status code if booking is not found', (done) => {
+    const bookingId = 18;
+    const newSeat = {
+      seat_number: 17,
+    };
+    chai.request(app)
+      .patch(`/api/v1/bookings/${bookingId}`)
+      .set('x-access-token', user2Token)
+      .send(newSeat)
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).to.equal(400);
+        expect(res.body).to.have.keys('status', 'message');
         done();
       });
   });

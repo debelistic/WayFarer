@@ -33,7 +33,7 @@ const BusesController = {
     } catch (error) {
       return res.status(500).send({
         status: 'error',
-        message: error,
+        error,
       });
     }
   },
@@ -48,7 +48,7 @@ const BusesController = {
     } catch (error) {
       return res.status(500).send({
         status: 'error',
-        message: error,
+        error,
       });
     }
   },

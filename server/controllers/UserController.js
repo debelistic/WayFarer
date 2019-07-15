@@ -33,7 +33,7 @@ const UserController = {
     } catch (error) {
       return res.status(500).send({
         status: 'error',
-        message: error,
+        error,
       });
     }
   },
@@ -54,7 +54,7 @@ const UserController = {
     } catch (error) {
       return res.status(500).send({
         status: 'error',
-        message: error,
+        error,
       });
     }
   },
