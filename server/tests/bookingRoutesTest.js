@@ -39,7 +39,7 @@ describe('User book a seat on a trip', () => {
         if (error) done(error);
         expect(res.status).to.equal(201);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.body.data).to.have.keys('booking_id', 'user_id', 'trip_id', 'bus_id', 'trip_date', 'seat_number', 'first_name', 'last_name', 'email');
+        expect(res.body.data).to.have.keys('id', 'user_id', 'trip_id', 'bus_id', 'trip_date', 'seat_number', 'first_name', 'last_name', 'email');
         expect(res.body.data.user_id).to.be.an('number');
         expect(res.body.data.trip_id).to.be.a('number');
         expect(res.body.data.seat_number).to.be.a('number');
@@ -61,7 +61,7 @@ describe('User book a seat on a trip', () => {
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(400);
-        expect(res.body).to.have.keys('status', 'message');
+        expect(res.body).to.have.keys('status', 'error');
         done();
       });
   });

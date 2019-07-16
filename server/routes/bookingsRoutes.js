@@ -12,6 +12,7 @@ Router.post(
   Auth.verifyToken,
   UserValidator.userCheck,
   BookingValidator.createBookingValidator,
+  BookingValidator.emptyBookingTripId,
   BookingsController.createBooking,
 );
 
@@ -37,6 +38,7 @@ Router.patch(
   Auth.checkToken,
   Auth.verifyToken,
   UserValidator.userCheck,
+  BookingValidator.emptySeatNumber,
   BookingValidator.changeSeatNumberValidator,
   BookingsController.changeSeatNumber,
 );

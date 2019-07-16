@@ -1,0 +1,890 @@
+{
+	"info": {
+		"_postman_id": "9cb3422e-5222-487f-ae35-a2ae9a608d57",
+		"name": "Way Farer",
+		"description": "WayFarer is a public bus transportation booking server.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Authentication",
+			"item": [
+				{
+					"name": "Auth Signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "victormailservices@gmail.com",
+									"description": "User Email Address",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "Victor",
+									"description": "User First Name",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Asemota",
+									"description": "User Last Name",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "asemot2019",
+									"description": "User Password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/auth/signup",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"signup"
+							]
+						},
+						"description": "User Signup With there details"
+					},
+					"response": []
+				},
+				{
+					"name": "User Signin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "victormailservices@gmail.com",
+									"description": "User Email Address",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "Victor",
+									"description": "User First Name",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "Asemota",
+									"description": "User Last Name",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "asemot2019",
+									"description": "User Password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/auth/signin",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"signin"
+							]
+						},
+						"description": "User Signin with their email and password"
+					},
+					"response": []
+				}
+			],
+			"description": "Users signup and signin",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "91504ec9-1559-4885-805c-5264d9679c5b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e40584e-9ef3-4995-a15c-abe3564ca407",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Trips",
+			"item": [
+				{
+					"name": "Admin Create Trip",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3Jhd290aWRlYmVAZ21haWwuY29tIiwiaWF0IjoxNTYzMjU4MDg0LCJleHAiOjE1NjM1MTcyODR9.07aTbYLQGxDTewr6SN537C4lUG3GWWQHPNHFKJzQ7m4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3Jhd290aWRlYmVAZ21haWwuY29tIiwiaWF0IjoxNTYzMjU4MDg0LCJleHAiOjE1NjM1MTcyODR9.07aTbYLQGxDTewr6SN537C4lUG3GWWQHPNHFKJzQ7m4",
+									"description": "Bearer Token",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"description": "User Db id",
+									"type": "text"
+								},
+								{
+									"key": "is_admin",
+									"value": "true",
+									"description": "User Admin Status",
+									"type": "text"
+								},
+								{
+									"key": "origin",
+									"value": "illupeju",
+									"description": "Trip Origin",
+									"type": "text"
+								},
+								{
+									"key": "destination",
+									"value": "epic tower",
+									"description": "Trip Destination",
+									"type": "text"
+								},
+								{
+									"key": "trip_date",
+									"value": "01/03/2019",
+									"description": "Trip Date",
+									"type": "text"
+								},
+								{
+									"key": "bus_id",
+									"value": "21",
+									"description": "Selected bus for the trip",
+									"type": "text"
+								},
+								{
+									"key": "fare",
+									"value": "21.36",
+									"description": "Bus fare",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/trips",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"trips"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "victorawotidebe@gmail.com",
+									"description": "User Email Address",
+									"disabled": true
+								},
+								{
+									"key": "first_name",
+									"value": "Victor",
+									"description": "User First Name",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "Asemota",
+									"description": "User Last Name",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "wayfarere2019",
+									"description": "User Password",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Admin User Create Trip"
+					},
+					"response": []
+				},
+				{
+					"name": "Users and Admin see all trips",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3Jhd290aWRlYmVAZ21haWwuY29tIiwiaWF0IjoxNTYzMjU4MDg0LCJleHAiOjE1NjM1MTcyODR9.07aTbYLQGxDTewr6SN537C4lUG3GWWQHPNHFKJzQ7m4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/trips",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"trips"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin cancel trip",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3Jhd290aWRlYmVAZ21haWwuY29tIiwiaWF0IjoxNTYzMjYwNjgyLCJleHAiOjE1NjM1MTk4ODJ9.pwNXV4vtCqtaDHtQ5o6aaKi_AmjFC2LvjwdIsz4zKZw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/trips/3",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"trips",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Trip by Destination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3Jhd290aWRlYmVAZ21haWwuY29tIiwiaWF0IjoxNTYzMjYwNjgyLCJleHAiOjE1NjM1MTk4ODJ9.pwNXV4vtCqtaDHtQ5o6aaKi_AmjFC2LvjwdIsz4zKZw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/trips/destination/edo",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"trips",
+								"destination",
+								"edo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Trip by Origin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3Jhd290aWRlYmVAZ21haWwuY29tIiwiaWF0IjoxNTYzMjYwNjgyLCJleHAiOjE1NjM1MTk4ODJ9.pwNXV4vtCqtaDHtQ5o6aaKi_AmjFC2LvjwdIsz4zKZw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/trips/origin/illaje",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"trips",
+								"origin",
+								"illaje"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "A journey with origin and destination",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d47f6c6a-79cd-4bff-abd3-2e77b5d8bdd1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "559ad256-9189-48a0-8105-8025dbd405fe",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "User book a trip",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3JtYWlsc2VydmljZXNAZ21haWwuY29tIiwiaWF0IjoxNTYzMjU5MTQ0LCJleHAiOjE1NjM1MTgzNDR9.iF58gV5S15myRIc0wm056hzmNMTwKYhKTCQ08aj5lYo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "4",
+									"description": "User Email Address",
+									"type": "text"
+								},
+								{
+									"key": "is_admin",
+									"value": "false",
+									"description": "User First Name",
+									"type": "text"
+								},
+								{
+									"key": "trip_id",
+									"value": "2",
+									"description": "User Last Name",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "asemot2019",
+									"description": "User Password",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/bookings",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET bookings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3JtYWlsc2VydmljZXNAZ21haWwuY29tIiwiaWF0IjoxNTYzMjU5MTQ0LCJleHAiOjE1NjM1MTgzNDR9.iF58gV5S15myRIc0wm056hzmNMTwKYhKTCQ08aj5lYo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/bookings",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bookings"
+							]
+						},
+						"description": "A user can get their booking, an admin can view all bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "User Delete their booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3JtYWlsc2VydmljZXNAZ21haWwuY29tIiwiaWF0IjoxNTYzMjU5MTQ0LCJleHAiOjE1NjM1MTgzNDR9.iF58gV5S15myRIc0wm056hzmNMTwKYhKTCQ08aj5lYo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/bookings/4",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bookings",
+								"4"
+							]
+						},
+						"description": "User Delete their booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Change seat number on a booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3JtYWlsc2VydmljZXNAZ21haWwuY29tIiwiaWF0IjoxNTYzMjYyMDcwLCJleHAiOjE1NjM1MjEyNzB9.yqs3_mSiBO37_0he9dC3shaw5HukPNC7ZvjqKCoxyrI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "seat_number",
+									"value": "19",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/bookings/5",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bookings",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Users make bookings and view bookings",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bc072725-9ee3-4b40-9c70-7decb6fad5b7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed4843be-7eb7-4c23-8349-4e22b4de6036",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Buses",
+			"item": [
+				{
+					"name": "Admin create bus",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3Jhd290aWRlYmVAZ21haWwuY29tIiwiaWF0IjoxNTYzMjYyMjY3LCJleHAiOjE1NjM1MjE0Njd9.CUHH5mz1Z2m-m2F3b9D_Yut1xm-YBb1Z92DVAMUgyeo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "number_plate",
+									"value": "klk-235-kl",
+									"type": "text"
+								},
+								{
+									"key": "maunfacturer",
+									"value": "honda",
+									"type": "text"
+								},
+								{
+									"key": "model",
+									"value": "2016xt",
+									"type": "text"
+								},
+								{
+									"key": "year",
+									"value": "2016",
+									"type": "text"
+								},
+								{
+									"key": "capacity",
+									"value": "45",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/buses",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"buses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all buses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2aWN0b3Jhd290aWRlYmVAZ21haWwuY29tIiwiaWF0IjoxNTYzMjYyMjY3LCJleHAiOjE1NjM1MjE0Njd9.CUHH5mz1Z2m-m2F3b9D_Yut1xm-YBb1Z92DVAMUgyeo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/api/v1/buses",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"buses"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Admin Post and Retrieve Buses",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7d2d657e-9ca9-4d27-9dcf-f4c1668ba314",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee8a3c23-5ff3-4da5-8953-b6f510b3521b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "GET Index route",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://wayfarerv1.herokuapp.com/",
+					"protocol": "https",
+					"host": [
+						"wayfarerv1",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Index route response"
+			},
+			"response": [
+				{
+					"name": "GET Index Route",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://wayfarerv1.herokuapp.com/",
+							"protocol": "https",
+							"host": [
+								"wayfarerv1",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"35-lQn/Zv+Mw/Ea/qIiFK5hSsAG+8c\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 16 Jul 2019 06:01:09 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"Welcome to Way Farer\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b0d6a705-1992-4bce-a516-2363c39d71aa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7295d67b-eee1-433e-aac8-0082c0f1c5dd",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

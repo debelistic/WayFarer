@@ -10,11 +10,62 @@ const changeSeatNumberQuery = 'UPDATE bookings SET seat_number=$1, modified_on=$
 
 
 const BookingsValidator = {
+
+  async emptyBusNumberManufacturer(req, res, next) {
+    if (/^\s+$/.test(req.body.number_plate) || /^\s+$/.test(req.body.maunfacturer)) {
+      return res.status(400).send({
+        status: 'error',
+        error: 'Number plate and manufacturer cannot be empty',
+      });
+    }
+    return next();
+  },
+
+  async emptyBusModelYear(req, res, next) {
+    if (/^\s+$/.test(req.body.model) || /^\s+$/.test(req.body.year)) {
+      return res.status(400).send({
+        status: 'error',
+        error: 'Model and year cannot be empty',
+      });
+    }
+    return next();
+  },
+
+  async emptyBuscapacity(req, res, next) {
+    if (/^\s+$/.test(req.body.capacity)) {
+      return res.status(400).send({
+        status: 'error',
+        error: 'Enter bus capcity',
+      });
+    }
+    return next();
+  },
+
   async createBookingValidator(req, res, next) {
     if (!req.body.trip_id || req.body.trip_id === null) {
       return res.status(400).send({
         status: 'error',
-        message: 'Enter Trip',
+        error: 'Enter Trip',
+      });
+    }
+    return next();
+  },
+
+  async emptyBookingTripId(req, res, next) {
+    if (/^\s+$/.test(req.body.trip_id)) {
+      return res.status(400).send({
+        status: 'error',
+        error: 'Enter trip',
+      });
+    }
+    return next();
+  },
+
+  async emptySeatNumber(req, res, next) {
+    if (/^\s+$/.test(req.body.seat_number)) {
+      return res.status(400).send({
+        status: 'error',
+        error: 'Enter seat number',
       });
     }
     return next();

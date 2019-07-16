@@ -32,10 +32,30 @@ const TripsValidator = {
   },
 
   async fareCheck(req, res, next) {
-    if (!req.body.fare) {
+    if (!req.body.fare || /^\s+$/.test(req.body.fare)) {
       return res.status(400).send({
         status: 'error',
         error: 'Enter fare',
+      });
+    }
+    return next();
+  },
+
+  async emptyBusIdTripId(req, res, next) {
+    if (/^\s+$/.test(req.body.bus_id) || /^\s+$/.test(req.body.trip_date)) {
+      return res.status(400).send({
+        status: 'error',
+        error: 'Bus  and trip cannot be empty',
+      });
+    }
+    return next();
+  },
+
+  async emptyDestinationOrigin(req, res, next) {
+    if (/^\s+$/.test(req.body.destination) || /^\s+$/.test(req.body.origin)) {
+      return res.status(400).send({
+        status: 'error',
+        error: 'Destination and origin cannot be empty',
       });
     }
     return next();

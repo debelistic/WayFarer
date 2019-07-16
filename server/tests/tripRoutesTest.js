@@ -49,8 +49,8 @@ describe('Admin Create Trips', () => {
         if (error) done(error);
         expect(res.status).to.equal(201);
         expect(res.body).to.have.keys('status', 'data');
-        expect(res.body.data).to.have.keys('trip_id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare');
-        expect(res.body.data.trip_id).to.be.an('number');
+        expect(res.body.data).to.have.keys('id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare');
+        expect(res.body.data.id).to.be.an('number');
         expect(res.body.data.bus_id).to.be.a('number');
         expect(res.body.data.destination).to.be.a('string');
         expect(res.body.data.trip_date).to.be.a('string');
@@ -197,7 +197,7 @@ describe('Admin Create Trips', () => {
   });
 });
 
-// get trips by destiabtion
+// get trips by destination
 describe('Get Trips by Destination', () => {
   it('Get all Trips by specified Destination', (done) => {
     const tripDestination = 'Virginia';
@@ -255,7 +255,7 @@ describe('Admin Cancel Trip', () => {
         expect(res.status).to.equal(200);
         expect(res.body).to.have.keys('status', 'data');
         expect(res.body.data).to.be.an('object');
-        expect(res.body.data).to.have.keys('message', 'trip_id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare', 'status', 'modified_on');
+        expect(res.body.data).to.have.keys('message', 'id', 'bus_id', 'origin', 'destination', 'trip_date', 'fare', 'status', 'modified_on');
         done();
       });
   });

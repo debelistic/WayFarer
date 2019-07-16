@@ -11,11 +11,14 @@ Router.post(
   ValidateUserInput.password,
   ValidateUserInput.validateMail,
   ValidateUserInput.checkEmail,
+  ValidateUserInput.emptyNames,
+  ValidateUserInput.emptyPasswordEmail,
   UserController.signup,
 );
 
 Router.post(
   '/auth/signin',
+  ValidateUserInput.emptyPasswordEmail,
   ValidateUserInput.loginField,
   ValidateUserInput.loginEmail,
   ValidateUserInput.loginPassword,

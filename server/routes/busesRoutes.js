@@ -1,6 +1,7 @@
 import express from 'express';
 import Auth from '../middlewares/Auth';
 import UserValidator from '../middlewares/UserValidator';
+import BookingValidator from '../middlewares/BookingValidator';
 import BusesController from '../controllers/BusesController';
 
 const Router = express.Router();
@@ -10,6 +11,9 @@ Router.post(
   Auth.checkToken,
   Auth.verifyToken,
   UserValidator.adminCheck,
+  BookingValidator.emptyBusModelYear,
+  BookingValidator.emptyBusNumberManufacturer,
+  BookingValidator.emptyBuscapacity,
   BusesController.createBuses,
 );
 

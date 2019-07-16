@@ -17,9 +17,9 @@ describe('Admin add bus', () => {
   it('POST bus', (done) => {
     const newBus = {
       token: 'user_token',
-      number_plate: 9,
+      number_plate: 'ght-345-tyh',
       maunfacturer: 'benz',
-      model: 18,
+      model: '2016 xl',
       year: 2016,
       capacity: 70,
     };
