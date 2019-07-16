@@ -1,4 +1,6 @@
 import express from 'express';
+import validate from 'express-validation';
+import Joi from 'joi';
 import Auth from '../middlewares/Auth';
 import UserValidator from '../middlewares/UserValidator';
 import BookingValidator from '../middlewares/BookingValidator';
@@ -11,6 +13,11 @@ Router.post(
   Auth.checkToken,
   Auth.verifyToken,
   UserValidator.userCheck,
+  validate({
+    body: {
+      trip_id: Joi.number().required(),
+    },
+  }),
   BookingValidator.createBookingValidator,
   BookingsController.createBooking,
 );
@@ -37,6 +44,11 @@ Router.patch(
   Auth.checkToken,
   Auth.verifyToken,
   UserValidator.userCheck,
+  validate({
+    body: {
+      seat_number: Joi.number().required(),
+    },
+  }),
   BookingValidator.changeSeatNumberValidator,
   BookingsController.changeSeatNumber,
 );

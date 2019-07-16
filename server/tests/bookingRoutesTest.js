@@ -61,7 +61,7 @@ describe('User book a seat on a trip', () => {
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).to.equal(400);
-        expect(res.body).to.have.keys('status', 'message');
+        expect(res.body).to.have.keys('status', 'error');
         done();
       });
   });
