@@ -15,6 +15,7 @@ Router.post(
   TripValidator.tripBusCheck,
   TripValidator.fareCheck,
   TripValidator.emptyBusIdTripId,
+  TripValidator.emptyDestinationOrigin,
   TripsController.createTrip,
 );
 
