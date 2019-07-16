@@ -38,6 +38,19 @@ app.get('/', (req, res) => {
   });
 });
 
+// from https://stackoverflow.com/questions/30266295/using-express-can-i-automatically-trim-all-incoming-posted-fields-in-req-body
+const trimmer = (req, res, next) => {
+  // eslint-disable-next-line no-undef
+  req.body = _.object(_.map(req.body, (value, key) => [key, value.trim()]));
+  next();
+};
+
+app.use(trimmer);
+
+app.get('/documentation', (req, res) => {
+  res.redirect('https://documenter.getpostman.com/view/5138806/SVSKLTwU?version=latest');
+});
+
 // Error handler middlewares
 app.use((req, res, next) => {
   const error = new Error('Your request could not be found');

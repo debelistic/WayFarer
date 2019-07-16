@@ -197,7 +197,7 @@ describe('Admin Create Trips', () => {
   });
 });
 
-// get trips by destiabtion
+// get trips by destination
 describe('Get Trips by Destination', () => {
   it('Get all Trips by specified Destination', (done) => {
     const tripDestination = 'Virginia';
