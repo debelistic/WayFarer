@@ -1,6 +1,4 @@
 import express from 'express';
-import validate from 'express-validation';
-import Joi from 'joi';
 import Auth from '../middlewares/Auth';
 import UserValidator from '../middlewares/UserValidator';
 import TripValidator from '../middlewares/TripValidator';
@@ -16,15 +14,7 @@ Router.post(
   TripValidator.destinationAndOriginCheck,
   TripValidator.tripBusCheck,
   TripValidator.fareCheck,
-  validate({
-    body: {
-      bus_id: Joi.number().required(),
-      origin: Joi.string().required(),
-      destination: Joi.string().required(),
-      trip_date: Joi.string().required(),
-      fare: Joi.number().required(),
-    },
-  }),
+  TripValidator.emptyBusIdTripId,
   TripsController.createTrip,
 );
 
