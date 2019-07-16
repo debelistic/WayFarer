@@ -22,7 +22,6 @@ const ValidateUserInput = {
     return next();
   },
 
-
   /**
    * Validate Name fields
    * @param {object} req
@@ -34,6 +33,26 @@ const ValidateUserInput = {
       return res.status(400).send({
         status: 'error',
         error: 'Enter your first name and last name ',
+      });
+    }
+    return next();
+  },
+
+  async emptyNames(req, res, next) {
+    if (/^\s+$/.test(req.body.first_name) || /^\s+$/.test(req.body.last_name)) {
+      return res.status(400).send({
+        status: 'error',
+        error: 'First name and last name cannot be empty ',
+      });
+    }
+    return next();
+  },
+
+  async emptyPasswordEmail(req, res, next) {
+    if (/^\s+$/.test(req.body.email) || /^\s+$/.test(req.body.password)) {
+      return res.status(400).send({
+        status: 'error',
+        error: 'Email and password cannot be empty ',
       });
     }
     return next();
