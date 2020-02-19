@@ -46,7 +46,7 @@
   "homepage": "https://github.com/debelistic/WayFarer#readme",
   "devDependencies": {
     "codeclimate-test-reporter": "^0.5.1",
-    "codecov": "^3.5.0",
+    "codecov": "^3.6.5",
     "coveralls": "^3.0.5",
     "eslint": "^5.15.0",
     "eslint-config-airbnb": "^17.1.1",
