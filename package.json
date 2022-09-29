@@ -62,7 +62,7 @@
     "@babel/node": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
     "@babel/register": "^7.4.4",
-    "@hapi/joi": "^15.1.0",
+    "@hapi/joi": "^15.1.1",
     "babel-watch": "^7.0.0",
     "bcrypt": "^3.0.6",
     "chai": "^4.2.0",
